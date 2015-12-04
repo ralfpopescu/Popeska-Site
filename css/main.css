@@ -7,4 +7,16 @@ body { font-size: 80%; font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
      div.tabContent { border: 1px solid #c9c3ba; padding: 0.5em; background-color: #f1f0ee; }
      div.tabContent.hide { display: none; }
      div.tabContent { text-align: center }
+     h1 { text-align: center }
      div.tabs {  }
+
+    div.tabContent {
+
+    width: 300px;
+    height: 1000px;
+    border: 1px solid black;
+    margin: auto;
+    width: 60%;
+    padding: 100px;
+    box-sizing: border-box;
+}
