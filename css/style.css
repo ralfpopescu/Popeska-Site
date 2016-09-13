@@ -18,8 +18,10 @@
     transform: translateY(+220%);
     margin-left:35px;
     word-spacing: 45px;
+}
 
-
+#listenList a{
+    text-decoration: none;
 }
 
 
@@ -42,7 +44,7 @@
 }
 
 #menu a:hover{
-    color: grey;
+    color: lightgrey;
     text-decoration: none;
 
 }

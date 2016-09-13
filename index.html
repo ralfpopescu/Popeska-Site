@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script src="js/TweenMax.js"></script>
 
 </head>
 
@@ -18,8 +19,10 @@
   <script src="js/scripts.js"></script>
 
   <div id="centered">
-        <img src="img/popeska_logo.png" style="width: 30%; height: 30%"/>
+        <img src="img/popeska_logo.png" id = "logo" style="width: 30%; height: 30%"/>
     </div>
+
+
 
   <div id="menu">
     <ul>
@@ -30,10 +33,17 @@
     </ul>
   </div>
 
+
+
   <div id="listenList">
-    <img src="img/soundcloud.png" style="width: 3%; height: 3%"/>
-    <img src="img/spotify.png" style="width: 3%; height: 3%"/>
-    <img src="img/youtube.png" style="width: 3%; height: 3%"/>
+    <a href="https://soundcloud.com/popeska">
+    <img src="img/soundcloud.png" style="width: 3%; height: 3%"/> </a>
+
+    <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF">
+    <img src="img/spotify.png" style="width: 3%; height: 3%"/> </a>
+
+    <a href="https://www.youtube.com/watch?v=W0v9n5RQRto">
+    <img src="img/youtube.png" style="width: 3%; height: 3%"/> </a>
   </div>
 
   <div id="socialList">
@@ -48,6 +58,14 @@
 
   </div>
 
+  <script>
+  window.onload = function(){
+    TweenMax.from(logo, 1, { delay:.5, x:-100 , opacity:0 , ease:Power1.easeInOut   });
+    TweenMax.from(menu, 1, {delay:1, opacity:0 , ease:Power1.easeInOut});
+    TweenMax.from(listenList, 1, { delay:1, y:100 , opacity:0 , ease:Power1.easeInOut   });
+  }
+
+  </script>
 
 </body>
 </html>
