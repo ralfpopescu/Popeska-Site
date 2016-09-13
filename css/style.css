@@ -24,6 +24,20 @@
     text-decoration: none;
 }
 
+#socialList {
+    text-align: center;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+220%);
+    margin-left:35px;
+    word-spacing: 45px;
+}
+
+#socialList a{
+    text-decoration: none;
+}
+
 
 #menu {
     text-align: center;
@@ -48,3 +62,88 @@
     text-decoration: none;
 
 }
+
+#circle-container {
+    text-align: center;
+    position: relative;
+    width: 24em;
+    height: 24em;
+    padding: 2.8em;
+    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
+    border: dashed 1px;
+    border-radius: 50%;
+    margin: 1.75em auto 0;
+}
+
+/*
+#north {
+    text-align: center;
+    margin-left:0px;
+
+    position: relative;
+    top: 10%;
+    transform: translateY(+100%);
+}
+
+#northeast {
+    text-align: center;
+    margin-left:1000px;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(+50%);
+}
+
+#east {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#southeast {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#south {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#southwest {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#west {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#northwest {
+    text-align: center;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+} */

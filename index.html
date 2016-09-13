@@ -12,6 +12,7 @@
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <script src="js/TweenMax.js"></script>
+  <script src="js/jquery-3.1.0.js"></script>
 
 </head>
 
@@ -24,12 +25,14 @@
 
 
 
+
+
   <div id="menu">
     <ul>
-      <a href="#listen">Listen</a>
-      <a href="#connect">Connect</a>
-      <a href="#inquire">Inquire</a>
-      <a href="#learn">Learn</a>
+      <a id = "listenID" href="#listen">Listen</a>
+      <a id = "connectID" href="#connect">Connect</a>
+      <a id = "inquireID" href="#inquire">Inquire</a>
+      <a id = "learnID" href="#learn">Learn</a>
     </ul>
   </div>
 
@@ -47,7 +50,14 @@
   </div>
 
   <div id="socialList">
+    <a href="https://soundcloud.com/popeska">
+    <img src="img/fb.png" style="width: 3%; height: 3%"/> </a>
 
+    <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF">
+    <img src="img/twitter.png" style="width: 3%; height: 3%"/> </a>
+
+    <a href="https://www.youtube.com/watch?v=W0v9n5RQRto">
+    <img src="img/instagram.png" style="width: 3%; height: 3%"/> </a>
   </div>
 
   <div id="inquireList">
@@ -58,12 +68,62 @@
 
   </div>
 
+<div id="circleWrapper">
+
+  <div id="north">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="northeast">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="east">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="southeast">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="south">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="southwest">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="west">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+  <div id="northwest">
+    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+  </div>
+
+</div>
+
   <script>
   window.onload = function(){
+    $("#socialList").hide();
+    $("#listenList").hide();
     TweenMax.from(logo, 1, { delay:.5, x:-100 , opacity:0 , ease:Power1.easeInOut   });
     TweenMax.from(menu, 1, {delay:1, opacity:0 , ease:Power1.easeInOut});
     TweenMax.from(listenList, 1, { delay:1, y:100 , opacity:0 , ease:Power1.easeInOut   });
+
+    //$("#north").hide();
   }
+  $( "#logo" ).click(function() {
+TweenMax.to(logo, 1, { delay:0, y:50 , opacity:0 , ease:Power1.easeInOut   });
+TweenMax.to(menu, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+TweenMax.to(listenList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+TweenMax.to(socialList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+
+});
+
+$( "#connectID" ).hover(function(){
+  $("#listenList").hide();
+  $("#socialList").show();
+});
+
+$( "#listenID" ).hover(function(){
+  $("#listenList").show();
+  $("#socialList").hide();
+});
 
   </script>
 
