@@ -1,0 +1,48 @@
+
+
+#centered {
+    text-align: center;
+    text-decoration: none;
+    margin-left:100px;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+100%);
+}
+
+#listenList {
+    text-align: center;
+
+    position: relative;
+    top: 70%;
+    transform: translateY(+220%);
+    margin-left:35px;
+    word-spacing: 45px;
+
+
+}
+
+
+#menu {
+    text-align: center;
+
+    position: relative;
+    top: 30%;
+    transform: translateY(+400%);
+    word-spacing: 30px;
+
+}
+
+#menu a{
+    color: black;
+    text-decoration: none;
+
+    font-family: Futura,Trebuchet MS,Arial,sans-serif;
+
+}
+
+#menu a:hover{
+    color: grey;
+    text-decoration: none;
+
+}
