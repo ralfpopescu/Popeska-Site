@@ -18,15 +18,44 @@
 
 <body>
   <script src="js/scripts.js"></script>
-
-  <div id="centered">
-        <img src="img/popeska_logo.png" id = "logo" style="width: 30%; height: 30%"/>
+<div class="container">
+  <div class="hero">
+    <div class ="circles-container">
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+      <div class ="circle"> </div>
+    </div>
+    <div class="logo-nav">
+      <img src="img/popeska_logo.png" id = "Logo"/>
+      <div class="nav">
+        <div class="nav-item">
+          Listen
+        </div>
+        <div class="nav-item">
+          Connect
+        </div>
+        <div class="nav-item">
+          Inquire
+        </div>
+        <div class="nav-item">
+          Learn
+        </div>
+      </div>
     </div>
 
+  </div>
+</div>
 
 
 
 
+
+<!--
   <div id="menu">
     <ul>
       <a id = "listenID" href="#listen">Listen</a>
@@ -34,11 +63,11 @@
       <a id = "inquireID" href="#inquire">Inquire</a>
       <a id = "learnID" href="#learn">Learn</a>
     </ul>
-  </div>
+  </div> -->
 
 
 
-  <div id="listenList">
+  <!-- <div id="listenList">
     <a href="https://soundcloud.com/popeska">
     <img src="img/soundcloud.png" style="width: 3%; height: 3%"/> </a>
 
@@ -68,62 +97,150 @@
 
   </div>
 
-<div id="circleWrapper">
+<div id="circle-container">
 
   <div id="north">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "north">
   </div>
   <div id="northeast">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "northeast">
   </div>
   <div id="east">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "east">
   </div>
   <div id="southeast">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "southeast">
   </div>
   <div id="south">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "south">
   </div>
   <div id="southwest">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "southwest">
   </div>
   <div id="west">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "west">
   </div>
   <div id="northwest">
-    <img src="img/clearCircle.png" id = "north" style="width: 6%; height: 6%">
+    <img src="img/clearCircle.png" id = "northwest">
   </div>
 
-</div>
+</div> -->
 
   <script>
-  window.onload = function(){
-    $("#socialList").hide();
-    $("#listenList").hide();
-    TweenMax.from(logo, 1, { delay:.5, x:-100 , opacity:0 , ease:Power1.easeInOut   });
-    TweenMax.from(menu, 1, {delay:1, opacity:0 , ease:Power1.easeInOut});
-    TweenMax.from(listenList, 1, { delay:1, y:100 , opacity:0 , ease:Power1.easeInOut   });
 
-    //$("#north").hide();
+//   var Circles = [document.getElementById("north"),document.getElementById("northeast"),document.getElementById("east"),
+//   document.getElementById("southeast"),document.getElementById("south"),document.getElementById("southwest"),
+//   document.getElementById("south")];
+//
+// var radianList = [(Math.PI/2),(Math.PI/4),(0),(7*Math.PI/4),(3*Math.PI/2),(5*Math.PI/4),(Math.PI),(3*Math.PI/4)];
+//
+//
+//   window.onload = function(){
+//     $("#socialList").hide();
+//     $("#listenList").hide();
+//     TweenMax.from(logo, 1, { delay:.5, x:-100 , opacity:0 , ease:Power1.easeInOut   });
+//     TweenMax.from(menu, 1, {delay:1, opacity:0 , ease:Power1.easeInOut});
+//     TweenMax.from(listenList, 1, { delay:1, y:100 , opacity:0 , ease:Power1.easeInOut   });
+//
+//
+//
+//
+// }
+// $( "#logo" ).click(function() {
+//   TweenMax.to(logo, 1, { delay:0, y:50 , opacity:0 , ease:Power1.easeInOut});
+//   TweenMax.to(menu, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+//   TweenMax.to(listenList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+//   TweenMax.to(socialList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+//
+//   $("#circle-container").css({
+//     display:"block"
+// })
+//
+//   for (i=0; i < 8; i++) {
+//     radian = radianList[i];
+//     TweenMax.to(Circles[i], 0.8, {
+//       x: Math.cos(radian) * 200,
+//       y: Math.sin(-radian) * 200,
+//       ease: Power4.easeOut
+//   });
+// }
+//
+// });
+//
+// $( "#connectID" ).hover(function(){
+// $("#listenList").hide();
+// $("#socialList").show();
+// });
+//
+// $( "#listenID" ).hover(function(){
+// $("#listenList").show();
+// $("#socialList").hide();
+// });
+
+$(document).ready(function(){
+  var $logo = $("#Logo");
+  var $circles = $(".circle");
+  var $circlesContainer = $(".circles-container");
+  var $hero = $(".hero");
+  var $logoNav = $(".logo-nav");
+
+  function handleLogoClick(){
+    radialExpand($circles, 170, 1, .1);
+    rotate($circlesContainer, 180, 1);
+    fadeOut($logoNav, 1);
+    slideDown($hero, 40, .7);
   }
-  $( "#logo" ).click(function() {
-TweenMax.to(logo, 1, { delay:0, y:50 , opacity:0 , ease:Power1.easeInOut   });
-TweenMax.to(menu, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
-TweenMax.to(listenList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
-TweenMax.to(socialList, 1, {delay:0, opacity:0 , ease:Power1.easeInOut});
+  function slideDown($element, distance, duration){
+    TweenMax.to($element, duration, {
+      y: distance,
+      ease: Power1.easeInOut
+    })
 
-});
+  }
+  function fadeOut($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone
+    })
 
-$( "#connectID" ).hover(function(){
-  $("#listenList").hide();
-  $("#socialList").show();
-});
+  }
+  function rotate($element, rotation, duration){
+    TweenMax.to($element, duration, {
+      rotation: rotation,
+      ease: Back.easeOut
+    })
+  }
+  function radialExpand($elements, distance, duration, stagger){
+    var counter = 0;
+    var degrees = 360;
+    var length = $elements.length;
+    var step = degrees/length;
 
-$( "#listenID" ).hover(function(){
-  $("#listenList").show();
-  $("#socialList").hide();
-});
+
+    $elements.each(function(){
+      var $element = $(this);
+      var rotation = step * counter;
+      var radians = rotation / 180 * Math.PI;
+
+      var xtrans =  Math.cos(radians) * distance;
+      var ytrans =  Math.sin(radians) * distance;
+
+      TweenMax.to($element, duration, {
+        x: xtrans,
+        y: ytrans,
+        ease: Back.easeOut,
+        delay: stagger * counter,
+        opacity:1
+      })
+      counter++;
+    });
+  }
+  $logo.on("click", handleLogoClick);
+
+
+
+})
+
 
   </script>
 

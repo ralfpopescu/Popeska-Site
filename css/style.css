@@ -1,4 +1,87 @@
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 
+}
+
+.hero {
+  margin-top: 150px;
+
+  position: relative;
+  width: 100%;
+}
+
+.logo-nav{
+position: relative;
+text-align: center;
+
+}
+
+.logo-nav > img{
+  display: inline-block;
+  width: 300px;
+}
+
+.circles-container{
+position: absolute;
+width: 80px;
+height: 80px;
+top: 50%;
+left: 50%;
+transform: translate3d(-50%, -50%, 0);
+}
+
+.circle{
+opacity: 0;
+position: absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display: block;
+border-radius: 50%;
+border: 2px solid black;
+
+}
+
+.nav{
+  width:100%;
+  text-align: center;
+
+}
+
+.nav-item{
+  position: relative;
+  display:inline-block;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.nav-item:before{
+  content: "";
+  position: absolute;
+  top:100%;
+  margin-top: 10px;
+  width:100%;
+  left:0;
+  height:2px;
+  background: blue;
+  opacity:0;
+  transform: translateY(5px);
+  transition: all 0.1s ease-in-out;
+}
+
+.nav-item:hover:before{
+opacity:1;
+transform: translateY(0);
+}
+
+
+/*
 
 #centered {
     text-align: center;
@@ -64,86 +147,58 @@
 }
 
 #circle-container {
+    display: none;
     text-align: center;
-    position: relative;
-    width: 24em;
-    height: 24em;
-    padding: 2.8em;
-    /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
-    border: dashed 1px;
-    border-radius: 50%;
-    margin: 1.75em auto 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+
 }
 
-/*
-#north {
-    text-align: center;
-    margin-left:0px;
 
-    position: relative;
-    top: 10%;
-    transform: translateY(+100%);
+#north {
+
+    position: absolute;
 }
 
 #northeast {
-    text-align: center;
-    margin-left:1000px;
 
-    position: relative;
-    top: 50%;
-    transform: translateY(+50%);
+  position: absolute;
+
 }
 
 #east {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
+
+  position: absolute;
 }
 
 #southeast {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
+
+  position: absolute;
 }
 
 #south {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
+
+  position: absolute;
 }
 
 #southwest {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
+
+  position: absolute;
 }
 
 #west {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
+  position: absolute;
 }
 
 #northwest {
-    text-align: center;
-    margin-left:100px;
 
-    position: relative;
-    top: 70%;
-    transform: translateY(+100%);
-} */
+
+  position: absolute;
+}*/
