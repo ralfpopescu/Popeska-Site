@@ -21,14 +21,20 @@
 <div class="container">
   <div class="hero">
     <div class ="circles-container">
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
-      <div class ="circle"> </div>
+      <div id = "c1" class ="circle"> </div>
+      <div id = "c2" class ="circle"> </div>
+      <div id = "c3" class ="circle"> </div>
+      <div id = "c4" class ="circle"> </div>
+      <div id = "c5" class ="circle"> </div>
+      <div id = "c6" class ="circle"> </div>
+      <div id = "c7" class ="circle"> </div>
+      <div id = "c8" class ="circle"> </div>
+
+      <div class="largerCircle"> </div>
+
+      <div class ="feather">
+        <img src="img/feather.jpg" id = "Feather"/>
+      </div>
     </div>
     <div class="logo-nav">
       <img src="img/popeska_logo.png" id = "Logo"/>
@@ -51,80 +57,6 @@
   </div>
 </div>
 
-
-
-
-
-<!--
-  <div id="menu">
-    <ul>
-      <a id = "listenID" href="#listen">Listen</a>
-      <a id = "connectID" href="#connect">Connect</a>
-      <a id = "inquireID" href="#inquire">Inquire</a>
-      <a id = "learnID" href="#learn">Learn</a>
-    </ul>
-  </div> -->
-
-
-
-  <!-- <div id="listenList">
-    <a href="https://soundcloud.com/popeska">
-    <img src="img/soundcloud.png" style="width: 3%; height: 3%"/> </a>
-
-    <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF">
-    <img src="img/spotify.png" style="width: 3%; height: 3%"/> </a>
-
-    <a href="https://www.youtube.com/watch?v=W0v9n5RQRto">
-    <img src="img/youtube.png" style="width: 3%; height: 3%"/> </a>
-  </div>
-
-  <div id="socialList">
-    <a href="https://soundcloud.com/popeska">
-    <img src="img/fb.png" style="width: 3%; height: 3%"/> </a>
-
-    <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF">
-    <img src="img/twitter.png" style="width: 3%; height: 3%"/> </a>
-
-    <a href="https://www.youtube.com/watch?v=W0v9n5RQRto">
-    <img src="img/instagram.png" style="width: 3%; height: 3%"/> </a>
-  </div>
-
-  <div id="inquireList">
-
-  </div>
-
-  <div id="learnSection">
-
-  </div>
-
-<div id="circle-container">
-
-  <div id="north">
-    <img src="img/clearCircle.png" id = "north">
-  </div>
-  <div id="northeast">
-    <img src="img/clearCircle.png" id = "northeast">
-  </div>
-  <div id="east">
-    <img src="img/clearCircle.png" id = "east">
-  </div>
-  <div id="southeast">
-    <img src="img/clearCircle.png" id = "southeast">
-  </div>
-  <div id="south">
-    <img src="img/clearCircle.png" id = "south">
-  </div>
-  <div id="southwest">
-    <img src="img/clearCircle.png" id = "southwest">
-  </div>
-  <div id="west">
-    <img src="img/clearCircle.png" id = "west">
-  </div>
-  <div id="northwest">
-    <img src="img/clearCircle.png" id = "northwest">
-  </div>
-
-</div> -->
 
   <script>
 
@@ -183,19 +115,65 @@ $(document).ready(function(){
   var $circlesContainer = $(".circles-container");
   var $hero = $(".hero");
   var $logoNav = $(".logo-nav");
+  var $feather = $(".feather");
+
+  fadeIn($hero,1);
 
   function handleLogoClick(){
-    radialExpand($circles, 170, 1, .1);
-    rotate($circlesContainer, 180, 1);
-    fadeOut($logoNav, 1);
     slideDown($hero, 40, .7);
+    radialExpand($circles, 170, 1, .1);
+    rotate($circlesContainer, 360, 1);
+    fadeOut($logoNav, 1);
+
+    $feather.show();
+    fadeIn($feather, 1);
+
   }
+  function handleFeatherClick(){
+    rotate($circlesContainer, -360, 6);
+    reverseRadialExpand($circles, 170, 4, 0);
+    fadeOut($feather, 1);
+    fadeOut($circles, .5);
+    slideUp($hero, 40, .7);
+    fadeIn($logoNav,2);
+  }
+
+  function handleCircleClick($element){
+      flash($element)
+    }
+
+  function flash($element){
+    TweenMax.to($element, .1, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        TweenMax.to($element, .1, {
+          opacity: 1,
+          ease: Linear.easeNone
+        })
+      }
+    })
+  }
+
+
   function slideDown($element, distance, duration){
     TweenMax.to($element, duration, {
       y: distance,
-      ease: Power1.easeInOut
+      ease: Power1.easeInOut,
+      onComplete:function(){
+        $logoNav.hide();
+      }
     })
+  }
+  function slideUp($element, distance, duration){
+    TweenMax.from($element, duration, {
+      y: distance,
+      ease: Power1.easeIn,
+      onStart: function(){
+        $logoNav.show();
 
+      }
+    })
   }
   function fadeOut($element, duration){
     TweenMax.to($element, duration, {
@@ -204,12 +182,26 @@ $(document).ready(function(){
     })
 
   }
+
+  function fadeIn($element, duration){
+    TweenMax.from($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone
+    })
+
+  }
+
   function rotate($element, rotation, duration){
     TweenMax.to($element, duration, {
       rotation: rotation,
       ease: Back.easeOut
     })
   }
+
+  function highlightCircle($element){
+
+}
+
   function radialExpand($elements, distance, duration, stagger){
     var counter = 0;
     var degrees = 360;
@@ -235,7 +227,43 @@ $(document).ready(function(){
       counter++;
     });
   }
+  function reverseRadialExpand($elements, distance, duration, stagger){
+    var counter = 0;
+    var degrees = 360;
+    var length = $elements.length;
+    var step = degrees/length;
+
+    $elements.each(function(){
+      var $element = $(this);
+      var rotation = step * counter;
+      var radians = rotation / 180 * Math.PI;
+
+      var xtrans =  -(Math.cos(radians) * distance)/4;
+      var ytrans =  -(Math.sin(radians) * distance)/4;
+
+      TweenMax.to($element, duration, {
+        x: xtrans,
+        y: ytrans,
+        ease: Back.easeOut,
+        delay: stagger * counter,
+        opacity:1
+      })
+      TweenMax.to($element, duration, {css:{
+      scale: .05 }
+    })
+
+
+
+      counter++;
+    });
+
+  }
   $logo.on("click", handleLogoClick);
+  $feather.on("click", handleFeatherClick);
+
+  $circles.on("click", function(){
+    handleCircleClick(this)
+  });
 
 
 
