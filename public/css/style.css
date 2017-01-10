@@ -21,11 +21,23 @@ text-align: center;
 .nav-icon{
   width: 30px;
   height: 30px;
+  position: relative;
+  display: inline-block;
+  padding: 7px;
 }
 
 .nav-icon > img {
-    width: 100%;
+    width: 70%;
     height: auto;
+    position: absolute;
+    display: block;
+}
+
+.icons{
+  position: absolute;
+  display: block;
+  width:100%;
+  text-align: center;
 }
 
 .logo-nav > img{

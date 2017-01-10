@@ -71,6 +71,7 @@
 
 $(document).ready(function(){
   var $logo = $("#Logo");
+  var $container = $("#container");
   var $circles = $(".circle");
   var $circlesContainer = $(".circles-container");
   var $hero = $(".hero");
@@ -81,12 +82,12 @@ $(document).ready(function(){
   fadeIn($hero,1);
 
   function handleLogoClick(){
-    slideDown($hero, 100, .7);
+    slideDown($logoNav, 100, .7);
     radialExpand($circles, 170, 1, .1);
     rotate($circlesContainer, 360, 1);
     //fadeOut($logoNav, 1);
 
-    $logoNav.hide();
+    //$logoNav.hide();
 
     $feather.show();
     fadeIn($feather, 1);
@@ -105,7 +106,22 @@ $(document).ready(function(){
 
   function handleCircleClick($element){
       flash($element)
-      highlightCircle($element)
+      //highlightCircle($element)
+
+      var id = $element.id;
+      var num_id = parseInt(id.charAt(1));
+
+      $.ajax({
+            type: 'POST',
+            data: {"id":num_id},
+            //contentType: 'application/json',
+            url: 'http://localhost:8080/' + num_id,
+            success: function(data) {
+            console.log('success');
+            console.log(JSON.stringify(data));
+            }
+       });
+
     }
 
     function highlightCircle($element){
@@ -140,6 +156,7 @@ $(document).ready(function(){
         $logoNav.hide();
       }
     })
+    fadeOut($element, duration)
   }
   function slideUp($element, distance, duration){
     TweenMax.from($element, duration, {
