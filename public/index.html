@@ -79,6 +79,8 @@ $(document).ready(function(){
   var $feather = $(".feather");
   var $largerCircles = $(".largerCircle");
 
+  var activated = [0,0,0,0,0,0,0,0];
+
   fadeIn($hero,1);
 
   function handleLogoClick(){
@@ -91,6 +93,7 @@ $(document).ready(function(){
 
     $feather.show();
     fadeIn($feather, 1);
+    activated = [0,0,0,0,0,0,0,0];
 
   }
   function handleFeatherClick(){
@@ -102,26 +105,26 @@ $(document).ready(function(){
     slideUp($hero, 100, .7);
     fadeIn($logoNav,2);
 
+    $.ajax({
+          type: 'POST',
+          data: {"activated":activated},
+          url: 'http://localhost:8080/featherclick',
+          success: function(data) {
+          console.log('success');
+          console.log(JSON.stringify(data));
+          }
+     });
+
   }
 
   function handleCircleClick($element){
       flash($element)
       //highlightCircle($element)
-
       var id = $element.id;
       var num_id = parseInt(id.charAt(1));
-
-      $.ajax({
-            type: 'POST',
-            data: {"id":num_id},
-            //contentType: 'application/json',
-            url: 'http://localhost:8080/' + num_id,
-            success: function(data) {
-            console.log('success');
-            console.log(JSON.stringify(data));
-            }
-       });
-
+      var num_id = num_id - 1;
+      activated[num_id] = Number(!activated[num_id]); //flips bit of circle id, -1 because ids start at 1
+      console.log(activated);
     }
 
     function highlightCircle($element){
