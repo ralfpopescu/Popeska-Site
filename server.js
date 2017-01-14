@@ -8,29 +8,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static('public'));
 app.listen(8080, function() { console.log('listening')});
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
-// app.post('/circleclick', function (req, res) {
-//   var circle_id = req.body.id;
-//   activated[circle_id] = Number(!activated[circle_id]);
-//   res.send(activated);
-//   console.log(activated);
-// });
-
 app.post('/featherclick', function (req, res) {
   var activated = req.body.activated
   var result = matchKey(activated);
-  //res.send(activated);
   if(result == "key1"){
-    res.download('secrets/ganzremix.mp3');
+    //res.send('secrets/ganzremix.mp3');
+    res.send("http://www.soundcloud.com");
     console.log("MATCH");
 }
-});
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
 });
 
 

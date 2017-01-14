@@ -37,27 +37,27 @@
     <div class="logo-nav">
       <img src="img/popeska_logo.png" id = "Logo"/>
       <div class="nav">
-        <div class="nav-item">
+        <div class="nav-item" id = "ListenNav">
           Listen
         </div>
-        <div class="nav-item">
+        <div class="nav-item" id = "ConnectNav">
           Connect
         </div>
-        <div class="nav-item">
+        <div class="nav-item" id = "InquireNav">
           Inquire
         </div>
-        <div class="nav-item">
+        <div class="nav-item" id = "LearnNav">
           Learn
         </div>
         <div class="icons" id = "listen-icons">
-          <div class="nav-icon"><img src="img/soundcloud.png" id = "Logo"/></div>
-          <div class="nav-icon"><img src="img/spotify.png" id = "Logo"/></div>
-          <div class="nav-icon"><img src="img/youtube.png" id = "Logo"/></div>
+          <div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div>
+          <div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div>
+          <div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div>
         </div>
         <div class="icons" id = "connect-icons">
-          <div class="nav-icon"><img src="img/twitter.png" id = "Logo"/></div>
-          <div class="nav-icon"><img src="img/fb.png" id = "Logo"/></div>
-          <div class="nav-icon"><img src="img/instagram.png" id = "Logo"/></div>
+          <div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div>
+          <div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div>
+          <div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div>
         </div>
       </div>
     </div>
@@ -110,8 +110,9 @@ $(document).ready(function(){
           data: {"activated":activated},
           url: 'http://localhost:8080/featherclick',
           success: function(data) {
-          console.log('success');
+          console.log(data);
           console.log(JSON.stringify(data));
+          window.location.href = data;
           }
      });
 
@@ -119,11 +120,18 @@ $(document).ready(function(){
 
   function handleCircleClick($element){
       flash($element)
+      $($element).css({backgroundColor: 'red'});
       //highlightCircle($element)
       var id = $element.id;
       var num_id = parseInt(id.charAt(1));
       var num_id = num_id - 1;
       activated[num_id] = Number(!activated[num_id]); //flips bit of circle id, -1 because ids start at 1
+      if(activated[num_id]){
+        $($element).css({backgroundColor: 'black'});
+      } else {
+        $($element).css({backgroundColor: 'white'});
+      }
+
       console.log(activated);
     }
 
