@@ -15,6 +15,9 @@
 </head>
 
 <body>
+  <form action='/featherclick' method="post" id="download">
+    <input type="text" name="key"/>
+  </form>
 <div class="container">
   <div class="hero">
 
@@ -50,14 +53,14 @@
           Learn
         </div>
         <div class="icons" id = "listen-icons">
-          <div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div>
-          <div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div>
-          <div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div>
+          <a href="https://soundcloud.com/popeska"><div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div></a>
+          <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF"><div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div></a>
+          <a href="https://www.youtube.com/watch?v=W0v9n5RQRto"><div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div></a>
         </div>
         <div class="icons" id = "connect-icons">
-          <div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div>
-          <div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div>
-          <div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div>
+          <a href="https://twitter.com/Popeska"><div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div></a>
+          <a href="https://www.facebook.com/popeskamusic/"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
+          <a href="https://www.facebook.com/"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
         </div>
       </div>
     </div>
@@ -83,6 +86,22 @@ $(document).ready(function(){
 
   fadeIn($hero,1);
 
+  $("#ListenNav").hover(function(){
+    $("#listen-icons").show();
+    $("#connect-icons").hide();
+  }, function(){
+    //$("#listen-icons").hide();
+  }
+);
+
+$("#ConnectNav").hover(function(){
+  $("#listen-icons").hide();
+  $("#connect-icons").show();
+}, function(){
+  //$("#listen-icons").hide();
+}
+);
+
   function handleLogoClick(){
     slideDown($logoNav, 100, .7);
     radialExpand($circles, 170, 1, .1);
@@ -105,16 +124,21 @@ $(document).ready(function(){
     slideUp($hero, 100, .7);
     fadeIn($logoNav,2);
 
-    $.ajax({
-          type: 'POST',
-          data: {"activated":activated},
-          url: 'http://localhost:8080/featherclick',
-          success: function(data) {
-          console.log(data);
-          console.log(JSON.stringify(data));
-          window.location.href = data;
-          }
-     });
+    var form = $('#download');
+    form.attr("value", JSON.stringify(activated));
+    form.submit();
+
+
+    // $.ajax({
+    //       type: 'POST',
+    //       data: {"activated":activated},
+    //       url: 'http://localhost:8080/featherclick',
+    //       success: function(data) {
+    //       console.log(data);
+    //       console.log(JSON.stringify(data));
+    //       window.location.href = data;
+    //       }
+    //  });
 
   }
 
