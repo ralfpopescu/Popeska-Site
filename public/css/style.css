@@ -1,7 +1,45 @@
+body {
+    background-color: #fff4e0;
+
+    -webkit-transition: background-color 0.5s ease-in-out;
+    -moz-transition: background-color 0.5s ease-in-out;
+    -o-transition: background-color 0.5s ease-in-out;
+    -khtml-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+
 .container {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
+
+}
+
+.albumArt{
+  position:relative;
+  width:200px;
+  height:400px;
+  margin: 0 auto;
+  margin-top:200px
+  margin-right:200px
+
+
+}
+
+.albumArt > img{
+  display: block;
+  opacity: 0.7;
+  width: 300px;
+  margin-top:-200px
+  margin-left:-200px
+
+}
+
+#leftArt{
+  float:left;
+}
+#rightArt{
+    float:right;
 
 }
 
@@ -148,6 +186,10 @@ opacity:.5;
 cursor: pointer;
 }
 
+#download{
+display:none;
+}
+
 
 #listen-icons{
 display:none;
@@ -155,6 +197,46 @@ display:none;
 
 #connect-icons{
 display:none;
+}
+
+#emailForm{
+display:none;
+}
+
+#email{
+display: none;
+}
+
+
+#inquiry{
+  width: 300px;
+  height: 100px;
+
+  padding-left:0;
+  padding-top:0;
+  padding-bottom:0.4em;
+  padding-right: 0.4em;
+
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+#submit{
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+
+  padding: 7px;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.1em;
 }
 
 #c1:hover{

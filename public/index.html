@@ -19,6 +19,11 @@
     <input type="text" name="key"/>
   </form>
 <div class="container">
+  <div class="albumArt" id = "leftArt">
+  </div>
+  <div class="albumArt" id = "rightArt">
+    <img src="img/Assets/phoenix.png"/>
+  </div>
   <div class="hero">
 
     <div class ="circles-container">
@@ -62,6 +67,11 @@
           <a href="https://www.facebook.com/popeskamusic/"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
           <a href="https://www.facebook.com/"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
         </div>
+        <form action='/inquiry' method="post" id ="emailForm">
+          <input type="text" name="firstname" value="Email" id = "email"><br>
+          <textarea name="lastname" value="Inquiry" id = "inquiry"></textarea><br><br>
+          <input type="submit" value="Submit" id = "submit">
+        </form>
       </div>
     </div>
 
@@ -83,12 +93,16 @@ $(document).ready(function(){
   var $largerCircles = $(".largerCircle");
 
   var activated = [0,0,0,0,0,0,0,0];
+  var fadeColors = ['#fff4e0', '#dceffc', '#fafed8', '#e4ffd5'];
+
+  colorTransition(document.body, fadeColors, 2000);
 
   fadeIn($hero,1);
 
   $("#ListenNav").hover(function(){
     $("#listen-icons").show();
     $("#connect-icons").hide();
+    $("#emailForm").hide();
   }, function(){
     //$("#listen-icons").hide();
   }
@@ -97,10 +111,30 @@ $(document).ready(function(){
 $("#ConnectNav").hover(function(){
   $("#listen-icons").hide();
   $("#connect-icons").show();
+  $("#emailForm").hide();
 }, function(){
   //$("#listen-icons").hide();
 }
 );
+
+$("#InquireNav").hover(function(){
+  $("#listen-icons").hide();
+  $("#connect-icons").hide();
+  $("#emailForm").show();
+}, function(){
+  //$("#listen-icons").hide();
+}
+);
+
+
+  function colorTransition(element, colors, time){
+    var curCol = 0,
+          timer = setInterval(function () {
+              if (curCol === colors.length) curCol = 0;
+              $(element).css("background-color", colors[curCol]);
+              curCol++;
+          }, time);
+  }
 
   function handleLogoClick(){
     slideDown($logoNav, 100, .7);
@@ -128,17 +162,6 @@ $("#ConnectNav").hover(function(){
     form.attr("value", JSON.stringify(activated));
     form.submit();
 
-
-    // $.ajax({
-    //       type: 'POST',
-    //       data: {"activated":activated},
-    //       url: 'http://localhost:8080/featherclick',
-    //       success: function(data) {
-    //       console.log(data);
-    //       console.log(JSON.stringify(data));
-    //       window.location.href = data;
-    //       }
-    //  });
 
   }
 

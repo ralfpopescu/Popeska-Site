@@ -11,16 +11,19 @@ app.use(express.static('public'));
 app.listen(8080, function() { console.log('listening')});
 
 app.post('/featherclick', function (req, res) {
-  // var activated = req.body;
-  // var result = matchKey(activated);
-  // if(result == "key1"){
-    //res.send('secrets/ganzremix.mp3');
+    var activated = req.body;
+    var result = matchKey(activated);
+    if(result == "key1"){
     res.setHeader("Content-Type","application/octect-stream");
     res.download("secrets/ganzremix.mp3");
     console.log("MATCH");
-//}
+  }
 });
 
+app.post('/inquiry', function (req, res) {
+    //var email = req.body.email;
+    //var inquiry = req.body.inquiry;
+});
 
 function matchKey(activated){
   var key1 = ["1","0","0","0","1","0","0","0"];
