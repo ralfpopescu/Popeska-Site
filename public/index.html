@@ -20,9 +20,10 @@
   </form>
 <div class="container">
   <div class="albumArt" id = "leftArt">
+    <img src="img/Assets/wolf.png" id = "leftPic"/>
   </div>
   <div class="albumArt" id = "rightArt">
-    <img src="img/Assets/phoenix.png"/>
+    <img src="img/Assets/phoenix.png" id = "rightPic"/>
   </div>
   <div class="hero">
 
@@ -94,8 +95,12 @@ $(document).ready(function(){
 
   var activated = [0,0,0,0,0,0,0,0];
   var fadeColors = ['#fff4e0', '#dceffc', '#fafed8', '#e4ffd5'];
+  var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
+  var time = 2000;
 
-  colorTransition(document.body, fadeColors, 2000);
+
+  colorTransition(document.body, fadeColors, time);
+  artTransition(arts, time);
 
   fadeIn($hero,1);
 
@@ -133,6 +138,26 @@ $("#InquireNav").hover(function(){
               if (curCol === colors.length) curCol = 0;
               $(element).css("background-color", colors[curCol]);
               curCol++;
+          }, time);
+  }
+
+  function artTransition(arts, time){
+        var curArt = 0;
+
+        $("#leftPic").attr('src',arts[3]);
+
+          timer = setInterval(function () {
+              if (curArt === arts.length) curArt = 0;
+              var parity = curArt % 2;
+              var div;
+              if(parity == 1){
+                fadeIn($("#leftArt"), 1);
+                fadeOut($("#rightArt"), 1);
+              } else {
+                fadeIn($("#rightArt"), 1);
+                fadeOut($("#leftArt"), 1);
+              }
+              curArt++;
           }, time);
   }
 
@@ -237,8 +262,8 @@ $("#InquireNav").hover(function(){
 
   function fadeIn($element, duration){
     $element.show();
-    TweenMax.from($element, duration, {
-      opacity: 0,
+    TweenMax.to($element, duration, {
+      opacity: 1,
       ease: Linear.easeNone
     })
 
