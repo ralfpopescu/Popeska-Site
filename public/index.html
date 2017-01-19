@@ -16,7 +16,7 @@
 
 <body>
   <form action='/featherclick' method="post" id="download">
-    <input type="text" name="key"/>
+    <input type="text" name="key" value="Hi"/>
   </form>
 <div class="container">
   <div class="albumArt" id = "leftArt">
@@ -39,7 +39,7 @@
 
       <div class="largerCircle"> </div>
       <div class ="feather">
-        <img src="img/feather.jpg" id = "Feather"/>
+        <img src="img/feather.png" id = "Feather"/>
       </div>
     </div>
 
@@ -94,9 +94,11 @@ $(document).ready(function(){
   var $largerCircles = $(".largerCircle");
 
   var activated = [0,0,0,0,0,0,0,0];
-  var fadeColors = ['#fff4e0', '#dceffc', '#fafed8', '#e4ffd5'];
+  var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
   var time = 2000;
+
+  fadeIn($("#leftArt"), 3);
 
 
   colorTransition(document.body, fadeColors, time);
@@ -144,16 +146,16 @@ $("#InquireNav").hover(function(){
   function artTransition(arts, time){
         var curArt = 0;
 
-        $("#leftPic").attr('src',arts[3]);
-
           timer = setInterval(function () {
               if (curArt === arts.length) curArt = 0;
               var parity = curArt % 2;
               var div;
               if(parity == 1){
+                $("#leftPic").attr('src',arts[curArt]);
                 fadeIn($("#leftArt"), 1);
                 fadeOut($("#rightArt"), 1);
               } else {
+                $("#rightPic").attr('src',arts[curArt]);
                 fadeIn($("#rightArt"), 1);
                 fadeOut($("#leftArt"), 1);
               }
@@ -183,9 +185,10 @@ $("#InquireNav").hover(function(){
     slideUp($hero, 100, .7);
     fadeIn($logoNav,2);
 
-    var form = $('#download');
-    form.attr("value", JSON.stringify(activated));
-    form.submit();
+    //var downloadForm = $('#download');
+    console.log(JSON.stringify(activated));
+    $('input[name="key"]').val(JSON.stringify(activated));
+    $('#download').submit();
 
 
   }
@@ -201,7 +204,7 @@ $("#InquireNav").hover(function(){
       if(activated[num_id]){
         $($element).css({backgroundColor: 'black'});
       } else {
-        $($element).css({backgroundColor: 'white'});
+        $($element).css({backgroundColor: 'transparent'});
       }
 
       console.log(activated);
@@ -245,10 +248,6 @@ $("#InquireNav").hover(function(){
     TweenMax.from($element, duration, {
       y: distance,
       ease: Power1.easeIn
-      // onStart: function(){
-      //   $logoNav.show();
-      //
-      // }
     })
   }
   function fadeOut($element, duration){

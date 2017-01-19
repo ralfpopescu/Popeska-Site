@@ -18,31 +18,35 @@ body {
 .albumArt{
   position:absolute;
   display: block;
-  width:200px;
+  width:300px;
   height:400px;
   margin: 0 auto;
-  margin-top:100px
-  margin-right:200px
+
+  margin-right:200px;
+  margin-bottom:200px;
   z-index:0;
 
 
 }
 
 .albumArt > img{
+  position:relative;
   display: block;
   opacity: 0.6;
   width: 300px;
-  margin-top:1px
-  margin-left:-200px
+  bottom:120px;
 
 }
 
 #leftArt{
   float:left;
+  opacity:0;
+  margin-left:90px
 }
 #rightArt{
+    opacity:0;
     float:right;
-    margin-left:470px
+    margin-left:410px
 
 }
 
