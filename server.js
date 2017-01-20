@@ -4,7 +4,16 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
 var express = require('express');
+var nodemailer = require('nodemailer');
 var app = express();
+
+var smtpTransport = nodemailer.createTransport("SMTP",{
+   service: "Gmail",  // sets automatically host, port and connection security settings
+   auth: {
+       user: "iampopeska@gmail.com",
+       pass: "mobydick5!"
+   }
+});
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -28,13 +37,26 @@ app.post('/featherclick', function (req, res) {
     res.download("secrets/ganzremix.mp3");
     console.log("MATCH");
   } else {
-    res.end('No match');
+    res.setHeader("Content-Type","application/octect-stream");
+    res.sendStatus(401);
   }
 });
 
 app.post('/inquiry', function (req, res) {
-    //var email = req.body.email;
-    //var inquiry = req.body.inquiry;
+  smtpTransport.sendMail({  //email options
+     from: "Popeska <iampopeska@gmail.com>", // sender address.  Must be the same as authenticated user if using GMail.
+     to: "Receiver Name <ralfpopescu@email.com>", // receiver
+     subject: "Emailing with nodemailer", // subject
+     text: "Email Example with nodemailer" // body
+  }, function(error, response){  //callback
+     if(error){
+         console.log(error);
+     }else{
+         console.log("Message sent: " + response.message);
+     }
+
+     //smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+  });
 });
 
 function matchKey(activated){
