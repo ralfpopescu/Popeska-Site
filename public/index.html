@@ -5,8 +5,7 @@
   <meta charset="utf-8">
 
   <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+  <meta name="description" content="I Am Popeska">
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <script src="js/TweenMax.js"></script>
@@ -74,6 +73,24 @@
           <textarea name="lastname" value="Inquiry" id = "inquiry"></textarea><br><br>
           <input type="submit" value="Submit" id = "submit">
         </form>
+        <div class="textList" id = "learnList">
+          <div class ="learnItem" id = "about">About Popeska </div>
+          <div class ="learnItem" id = "services">Services </div>
+          <div class ="learnItem" id = "photoGallery">Photo Gallery </div>
+          <div class ="learnItem" id = "resume">Resume </div>
+        </div>
+        <div class="textList" id = "servicesText">
+          Available Services to Inquire:<br>
+          Mix/Mastering. Rate: 150/track for mix/master. 50 for master.<br>
+          Remixing. Negotiable rates and conditions.<br>
+          Production. Negotiable rates and conditions.<br>
+          Booking. Negotiable rates and conditions.<br>
+          Personal Lessons. 120/hour. Must be in Atlanta.<br>
+          Skype Lessons. 85/hour.<br>
+        </div>
+        <div id = "backArrow">
+          <
+        </div>
       </div>
     </div>
 
@@ -111,6 +128,7 @@ $(document).ready(function(){
     $("#listen-icons").show();
     $("#connect-icons").hide();
     $("#emailForm").hide();
+    $("#learnList").hide();
   }, function(){
     //$("#listen-icons").hide();
   }
@@ -120,6 +138,7 @@ $("#ConnectNav").hover(function(){
   $("#listen-icons").hide();
   $("#connect-icons").show();
   $("#emailForm").hide();
+  $("#learnList").hide();
 }, function(){
   //$("#listen-icons").hide();
 }
@@ -129,10 +148,36 @@ $("#InquireNav").hover(function(){
   $("#listen-icons").hide();
   $("#connect-icons").hide();
   $("#emailForm").show();
+  $("#learnList").hide();
 }, function(){
   //$("#listen-icons").hide();
 }
 );
+
+$("#LearnNav").hover(function(){
+  $("#listen-icons").hide();
+  $("#connect-icons").hide();
+  $("#emailForm").hide();
+  $("#learnList").show();
+}, function(){
+  //$("#listen-icons").hide();
+}
+);
+
+$("#about").on("click", function(){
+  $("#learnList").hide();
+  fadeIn($("#servicesText"), 2);
+  fadeIn($("#backArrow"), 2);
+});
+$("#services").on("click", handleLogoClick);
+$("#photoGallery").on("click", handleLogoClick);
+$("#resume").on("click", handleLogoClick);
+
+$("#backArrow").on("click", function(){
+   $("#learnList").show();
+   $("#servicesText").hide();
+   $("#backArrow").hide();
+});
 
 
   function colorTransition(element, colors, time){
@@ -168,10 +213,6 @@ $("#InquireNav").hover(function(){
     slideDown($logoNav, 100, .7);
     radialExpand($circles, 170, 1, .1);
     rotate($circlesContainer, 360, 1);
-    //fadeOut($logoNav, 1);
-
-    //$logoNav.hide();
-
     $feather.show();
     fadeIn($feather, 1);
     activated = [0,0,0,0,0,0,0,0];
@@ -240,7 +281,7 @@ $("#InquireNav").hover(function(){
       y: distance,
       ease: Power1.easeInOut,
       onComplete:function(){
-        $logoNav.hide();
+        $element.hide();
       }
     })
     fadeOut($element, duration)

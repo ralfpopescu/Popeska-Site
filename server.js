@@ -5,10 +5,13 @@ var multer = require('multer');
 var upload = multer();
 var express = require('express');
 var nodemailer = require('nodemailer');
+//var smtpTransport = require('nodemailer-smtp-transport');
 var app = express();
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
+var smtpTransport = nodemailer.createTransport({
    service: "Gmail",  // sets automatically host, port and connection security settings
+   secureConnection: false, // use SSL
+   port: 587, // port for secure SMTP
    auth: {
        user: "iampopeska@gmail.com",
        pass: "mobydick5!"
