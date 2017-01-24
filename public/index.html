@@ -226,22 +226,29 @@ $("#backArrow").on("click", function(){
   }
 
   function handleLogoClick(){
-    slideDown($logoNav, 100, .7);
-    radialExpand($circles, 170, 1, .1);
-    rotate($circlesContainer, 360, 1);
-    $feather.show();
-    fadeIn($feather, 1);
+    nestedFade($logoNav, .7);
+    // radialExpand($circles, 170, 1, .1);
+    // rotate($circlesContainer, 360, 1);
     activated = [0,0,0,0,0,0,0,0];
 
   }
   function handleFeatherClick(){
-    $logoNav.show();
+
     rotate($circlesContainer, -360, 6);
     reverseRadialExpand($circles, 170, 4, 0);
-    fadeOut($feather, .5);
+    //fadeOut($feather, .5);
     fadeOut($circles, .5);
-    slideUp($hero, 100, .7);
-    fadeIn($logoNav,2);
+
+    TweenMax.to($feather, .5, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        slideUp($hero, 100, .7);
+        fadeIn($logoNav,2);
+      }
+    })
+
+
 
     //var downloadForm = $('#download');
     console.log(JSON.stringify(activated));
@@ -325,19 +332,42 @@ $("#backArrow").on("click", function(){
     })
   }
 
+  function nestedFade($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete:function(){
+        $element.hide();
+        $feather.show();
+        fadeIn($feather, 1);
+        radialExpand($circles, 170, 1, .1);
+        rotate($circlesContainer, 360, 1);
+      }
+    })
+  }
+
   function fadeIn($element, duration){
     $element.show();
     TweenMax.to($element, duration, {
       opacity: 1,
       ease: Linear.easeNone
     })
-
   }
 
   function rotate($element, rotation, duration){
     TweenMax.to($element, duration, {
       rotation: rotation,
       ease: Back.easeOut
+    })
+  }
+
+  function rotateAndHide($element, rotation, duration){
+    TweenMax.to($element, duration, {
+      rotation: rotation,
+      ease: Back.easeOut,
+      onComplete:function(){
+        $element.hide();
+      }
     })
   }
 
@@ -389,10 +419,6 @@ $("#backArrow").on("click", function(){
         delay: stagger * counter,
         opacity:1
       })
-
-
-
-
       counter++;
     });
 
