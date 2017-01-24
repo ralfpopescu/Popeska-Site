@@ -59,14 +59,14 @@
           Learn
         </div>
         <div class="icons" id = "listen-icons">
-          <a href="https://soundcloud.com/popeska"><div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div></a>
-          <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF"><div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div></a>
-          <a href="https://www.youtube.com/watch?v=W0v9n5RQRto"><div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div></a>
+          <a href="https://soundcloud.com/popeska" target="_blank"><div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div></a>
+          <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF" target="_blank"><div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div></a>
+          <a href="https://www.youtube.com/watch?v=W0v9n5RQRto" target="_blank"><div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div></a>
         </div>
         <div class="icons" id = "connect-icons">
-          <a href="https://twitter.com/Popeska"><div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div></a>
-          <a href="https://www.facebook.com/popeskamusic/"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
-          <a href="https://www.facebook.com/"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
+          <a href="https://twitter.com/Popeska" target="_blank"><div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div></a>
+          <a href="https://www.facebook.com/popeskamusic/" target="_blank"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
+          <a href="https://www.instagram.com/popeska/" target="_blank"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
         </div>
         <form action='/inquiry' method="post" id ="emailForm">
           <input type="text" name="firstname" value="Email" id = "email"><br>
@@ -77,7 +77,7 @@
           <div class ="learnItem" id = "about">About Popeska </div>
           <div class ="learnItem" id = "services">Services </div>
           <div class ="learnItem" id = "photoGallery">Photo Gallery </div>
-          <div class ="learnItem" id = "resume">Resume </div>
+          <div class ="learnItem" id = "resume"><a href="img/Assets/RALF_MICHAEL_POPESCU_RESUME.pdf" target="_blank">Résumé</a> </div>
         </div>
         <div class="textList" id = "servicesText">
           Available Services to Inquire:<br>
@@ -87,7 +87,21 @@
           Booking. Negotiable rates and conditions.<br>
           Personal Lessons. 120/hour. Must be in Atlanta.<br>
           Skype Lessons. 85/hour.<br>
+        <div class="textList" id = "aboutText">
+          Ralf Popescu's moniker "Popeska" was born in the early explosion of electronic dance music back in 2009, and since then
+          he has consistently challenged the status quo of music production with unique and sonically addicting material.
+          Though he has toured internationally, playing festivals like EDC Las Vegas, TomorrowWorld, Nocturnal Wonderland,
+          and dozens more, nowadays he prefers to hone his craft and provide his production services in the comfort of his home city of Atlanta.
+          As a Sony/ATV producer and writer who has collaborated with clients such as the SuperBowl, Bose, Major League Soccer,
+          EA Games, and a diverse collection of major label artists, Popeska is no stranger to professional quality production.
+          Now, he is happy to extend his services to a broader customer base, as his passion for music production drives him to work
+          on all types of music from musicians of all walks of life and skill levels. <br><br>
+          In addition to music production, Ralf Popescu is extraordinarily passionate in the realm of computer science.
+          As a student of Georgia Institute of Technology, he has developed his skills as a software engineer and problem solver
+          through studies and many projects, including this website. His experience ranges from low level computing to machine
+          learning to web development, ad he continually searches for new and challenging problems to solve.
         </div>
+
         <div id = "backArrow">
           <
         </div>
@@ -168,10 +182,12 @@ $("#about").on("click", function(){
   $("#learnList").hide();
   fadeIn($("#servicesText"), 2);
   fadeIn($("#backArrow"), 2);
+  fadeOutAndHide($("#leftArt"), 2);
+  fadeOutAndHide($("#rightArt"), 2);
 });
 $("#services").on("click", handleLogoClick);
 $("#photoGallery").on("click", handleLogoClick);
-$("#resume").on("click", handleLogoClick);
+//$("#resume").on("click", handleLogoClick);
 
 $("#backArrow").on("click", function(){
    $("#learnList").show();
@@ -296,9 +312,17 @@ $("#backArrow").on("click", function(){
     TweenMax.to($element, duration, {
       opacity: 0,
       ease: Linear.easeNone
-
     })
+  }
 
+  function fadeOutAndHide($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete:function(){
+        $element.hide();
+      }
+    })
   }
 
   function fadeIn($element, duration){

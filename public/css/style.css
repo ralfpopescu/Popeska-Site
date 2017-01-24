@@ -274,6 +274,11 @@ display: none;
   opacity: 0;
 }
 
+#aboutText{
+  opacity: 0;
+  display:none;
+}
+
 #backArrow{
   display:none;
   opacity: 0;
