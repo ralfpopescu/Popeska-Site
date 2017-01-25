@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
+  <title>I Am Popeska</title>
   <meta name="description" content="I Am Popeska">
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -87,6 +87,7 @@
           Booking. Negotiable rates and conditions.<br>
           Personal Lessons. 120/hour. Must be in Atlanta.<br>
           Skype Lessons. 85/hour.<br>
+          </div>
         <div class="textList" id = "aboutText">
           Ralf Popescu's moniker "Popeska" was born in the early explosion of electronic dance music back in 2009, and since then
           he has consistently challenged the status quo of music production with unique and sonically addicting material.
@@ -105,7 +106,6 @@
         <div id = "backArrow">
           <
         </div>
-      </div>
     </div>
 
   </div>
@@ -129,6 +129,7 @@ $(document).ready(function(){
   var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
   var time = 2000;
+  var pause = 0;
 
   fadeIn($("#leftArt"), 3);
 
@@ -140,6 +141,13 @@ $(document).ready(function(){
 
   $("#ListenNav").hover(function(){
     $("#listen-icons").show();
+    slideUp($("#listen-icons"), 10, .1);
+
+    TweenMax.from($("#listen-icons"), .2, {
+      opacity: 0,
+      ease: Linear.easeNone
+    })
+
     $("#connect-icons").hide();
     $("#emailForm").hide();
     $("#learnList").hide();
@@ -151,6 +159,13 @@ $(document).ready(function(){
 $("#ConnectNav").hover(function(){
   $("#listen-icons").hide();
   $("#connect-icons").show();
+  slideUp($("#connect-icons"), 10, .1);
+
+  TweenMax.from($("#connect-icons"), .2, {
+    opacity: 0,
+    ease: Linear.easeNone
+  })
+
   $("#emailForm").hide();
   $("#learnList").hide();
 }, function(){
@@ -180,18 +195,25 @@ $("#LearnNav").hover(function(){
 
 $("#about").on("click", function(){
   $("#learnList").hide();
+  fadeInFrom($("#aboutText"), 2);
+  fadeInFrom($("#backArrow"), 2);
+});
+$("#services").on("click", function(){
+  $("#learnList").hide();
+  fadeInFrom($("#servicesText"), 2);
+  fadeInFrom($("#backArrow"), 2);
+});
+$("#photoGallery").on("click", function(){
+  $("#learnList").hide();
   fadeIn($("#servicesText"), 2);
   fadeIn($("#backArrow"), 2);
-  fadeOutAndHide($("#leftArt"), 2);
-  fadeOutAndHide($("#rightArt"), 2);
 });
-$("#services").on("click", handleLogoClick);
-$("#photoGallery").on("click", handleLogoClick);
 //$("#resume").on("click", handleLogoClick);
 
 $("#backArrow").on("click", function(){
    $("#learnList").show();
    $("#servicesText").hide();
+   $("#aboutText").hide();
    $("#backArrow").hide();
 });
 
@@ -350,6 +372,14 @@ $("#backArrow").on("click", function(){
     $element.show();
     TweenMax.to($element, duration, {
       opacity: 1,
+      ease: Linear.easeNone
+    })
+  }
+
+  function fadeInFrom($element, duration){
+    $element.show();
+    TweenMax.from($element, duration, {
+      opacity: 0,
       ease: Linear.easeNone
     })
   }
