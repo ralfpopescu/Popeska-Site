@@ -8,6 +8,7 @@
   <meta name="description" content="I Am Popeska">
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="img/Assets/owl.png">
   <script src="js/TweenMax.js"></script>
   <script src="js/jquery-3.1.0.js"></script>
 
@@ -102,6 +103,11 @@
           through studies and many projects, including this website. His experience ranges from low level computing to machine
           learning to web development, ad he continually searches for new and challenging problems to solve.
         </div>
+        <div id = 'photoGallery'>
+          <img src="img/photoGallery/i1.jpg" class = "pgPhoto" id = "pgPhoto0"/>
+          <img src="img/photoGallery/i2.jpg" class = "pgPhoto"  id = "pgPhoto1"/>
+          <img src="img/photoGallery/i3.jpg" class = "pgPhoto"  id = "pgPhoto2"/>
+        </div>
 
         <div id = "backArrow">
           <
@@ -131,8 +137,18 @@ $(document).ready(function(){
   var time = 2000;
   var pause = 0;
 
-  fadeIn($("#leftArt"), 3);
+  function pauseArt(){
+    pause = 1;
+    fadeOut($("#rightArt"), 1);
+    fadeOut($("#leftArt"), 1);
+  }
 
+  function unpauseArt(){
+    pause = 0;
+  }
+
+  fadeIn($("#leftArt"), 3);
+  glow($circlesContainer);
 
   colorTransition(document.body, fadeColors, time);
   artTransition(arts, time);
@@ -177,6 +193,15 @@ $("#InquireNav").hover(function(){
   $("#listen-icons").hide();
   $("#connect-icons").hide();
   $("#emailForm").show();
+
+  slideUp($("#emailForm"), 10, .1);
+
+  TweenMax.from($("#emailForm"), .2, {
+    opacity: 0,
+    ease: Linear.easeNone
+  })
+
+
   $("#learnList").hide();
 }, function(){
   //$("#listen-icons").hide();
@@ -195,16 +220,19 @@ $("#LearnNav").hover(function(){
 
 $("#about").on("click", function(){
   $("#learnList").hide();
+  pauseArt();
   fadeInFrom($("#aboutText"), 2);
   fadeInFrom($("#backArrow"), 2);
 });
 $("#services").on("click", function(){
   $("#learnList").hide();
+  pauseArt();
   fadeInFrom($("#servicesText"), 2);
   fadeInFrom($("#backArrow"), 2);
 });
 $("#photoGallery").on("click", function(){
   $("#learnList").hide();
+  pauseArt();
   fadeIn($("#servicesText"), 2);
   fadeIn($("#backArrow"), 2);
 });
@@ -215,6 +243,7 @@ $("#backArrow").on("click", function(){
    $("#servicesText").hide();
    $("#aboutText").hide();
    $("#backArrow").hide();
+   unpauseArt();
 });
 
 
@@ -236,29 +265,34 @@ $("#backArrow").on("click", function(){
               var div;
               if(parity == 1){
                 $("#leftPic").attr('src',arts[curArt]);
+                if(!pause){
                 fadeIn($("#leftArt"), 1);
+                }
                 fadeOut($("#rightArt"), 1);
               } else {
                 $("#rightPic").attr('src',arts[curArt]);
+                if(!pause){
                 fadeIn($("#rightArt"), 1);
+                }
                 fadeOut($("#leftArt"), 1);
               }
               curArt++;
           }, time);
   }
 
+
   function handleLogoClick(){
     nestedFade($logoNav, .7);
     // radialExpand($circles, 170, 1, .1);
     // rotate($circlesContainer, 360, 1);
-    activated = [0,0,0,0,0,0,0,0];
+    //activated = [0,0,0,0,0,0,0,0];
+    pauseArt();
 
   }
   function handleFeatherClick(){
 
     rotate($circlesContainer, -360, 6);
     reverseRadialExpand($circles, 170, 4, 0);
-    //fadeOut($feather, .5);
     fadeOut($circles, .5);
 
     TweenMax.to($feather, .5, {
@@ -270,9 +304,9 @@ $("#backArrow").on("click", function(){
       }
     })
 
+    unpauseArt();
 
-
-    //var downloadForm = $('#download');
+    //send activation code to server
     console.log(JSON.stringify(activated));
     $('input[name="key"]').val(JSON.stringify(activated));
     $('#download').submit();
@@ -293,9 +327,8 @@ $("#backArrow").on("click", function(){
       } else {
         $($element).css({backgroundColor: 'transparent'});
       }
-
-      console.log(activated);
     }
+
 
     function highlightCircle($element){
       TweenMax.to($largerCircle, duration, {
@@ -319,6 +352,21 @@ $("#backArrow").on("click", function(){
       }
     })
   }
+
+  function glow($element){
+    TweenMax.fromTo($element, 2,
+    		{
+          opacity: .6,
+      	},
+    		{
+          opacity: .9,
+          repeat: -1,
+          ease: Linear.easeNone,
+          yoyo: true
+    		}
+    	);
+  }
+
 
 
   function slideDown($element, distance, duration){
@@ -453,12 +501,29 @@ $("#backArrow").on("click", function(){
     });
 
   }
+
+  function photoSwitchRight(){
+    var currentSrc = $("#pgPhoto1").attr('src');
+    var rightSrc = $("#pgPhoto2").attr('src');
+    var nextSrc =
+    $("#pgPhoto1").attr('src',rightSrc);
+    $("#pgPhoto0").attr('src',currentSrc);
+  }
+
+  function photoSwitchLeft(){
+    $("#leftPic").attr('src',arts[curArt]);
+  }
+
+
   $logo.on("click", handleLogoClick);
   $feather.on("click", handleFeatherClick);
+  $("#pgPhoto2").on("click", photoSwitchRight);
 
   $circles.on("click", function(){
     handleCircleClick(this)
   });
+
+
 
 
 

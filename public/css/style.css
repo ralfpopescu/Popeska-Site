@@ -262,6 +262,13 @@ display: none;
 }
 
 .learnItem{
+  text-decoration: none;
+
+}
+
+.learnItem a{
+text-decoration: none !important;
+color: #000000;
 
 }
 .learnItem:hover{
@@ -274,6 +281,36 @@ display: none;
 }
 
 #aboutText{
+}
+
+.pgPhoto{
+  height:auto;
+  width:auto;
+  max-width: 200px;
+  max-height:200px;
+}
+
+#pgPhoto0{
+    opacity:0.5;
+    max-width: 150px;
+    max-height:150px;
+    margin-top: 1;
+}
+#pgPhoto2{
+    opacity:0.6;
+    max-width: 150px;
+    max-height:150px;
+    margin-top: 1;
+}
+
+#pgPhoto0:hover{
+  opacity:0.4;
+  cursor:pointer;
+
+}
+#pgPhoto2:hover{
+  opacity:0.4;
+  cursor:pointer;
 }
 
 #backArrow{
