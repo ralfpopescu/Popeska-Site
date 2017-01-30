@@ -11,6 +11,9 @@
   <link rel="icon" href="img/Assets/owl.png">
   <script src="js/TweenMax.js"></script>
   <script src="js/jquery-3.1.0.js"></script>
+  <script src="node_modules/sketch-js/js/sketch.js"></script>
+  <script src="https://rawgithub.com/soulwire/sketch.js/master/js/sketch.min.js"></script>
+
 
 </head>
 
@@ -133,13 +136,15 @@ $(document).ready(function(){
   var $largerCircles = $(".largerCircle");
 
   var activated = [0,0,0,0,0,0,0,0];
-  var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
+  var fadeColors = ['#FFAE8F', '#BDD6FD', '#B4E39B', '#FCFE89'];
+  //var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
   var time = 10000;
   var pause = 0;
   var hoverOn = 1;
   var curArt = 0; //global for unpauseArt
   var parity;
+  var enteringCode = 0;
 
   function pauseArt(){
     pause = 1;
@@ -360,9 +365,11 @@ function hideAll(){
   function handleLogoClick(){
     nestedFade($logoNav, .7);
     pauseArt();
+    enteringCode = 1;
 
   }
   function handleFeatherClick(){
+    enteringCode = 0;
 
     rotate($circlesContainer, -360, 6);
     reverseRadialExpand($circles, 170, 4, 0);
@@ -610,6 +617,20 @@ function getPhotoIndex(string){
     fadeInFromFinalOpacity($("#pgPhoto0"),.5,.6);
     fadeInFromFinalOpacity($("#pgPhoto1"),.5,1);
     fadeInFromFinalOpacity($("#pgPhoto2"),.5,.6);
+
+    $("#pgPhoto2").hover(function(){
+      $("#pgPhoto2").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto2").css({opacity:.6})
+    }
+    );
+
+    $("#pgPhoto0").hover(function(){
+      $("#pgPhoto0").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto0").css({opacity:.6})
+    }
+    );
   }
 
   function photoSwitchLeft(){
@@ -662,6 +683,162 @@ function getPhotoIndex(string){
 
 })
 
+//start
+function Particle( x, y, radius ) {
+	this.init( x, y, radius );
+}
+
+Particle.prototype = {
+
+	init: function( x, y, radius ) {
+
+		this.alive = true;
+
+		this.radius = radius || 10;
+		this.wander = 0.15;
+		this.theta = random( TWO_PI );
+		this.drag = 0.92;
+		this.color = '#fff';
+
+		this.x = x || 0.0;
+		this.y = y || 0.0;
+
+		this.vx = 0.0;
+		this.vy = 0.0;
+	},
+
+	move: function() {
+
+    var randomMotion = (random(1,7))/10;
+
+
+		this.x += this.vx * randomMotion;
+		this.y += this.vy * randomMotion;
+
+		this.vx *= this.drag;
+		this.vy *= this.drag;
+
+		this.theta += random( -0.5, 0.5 ) * this.wander;
+		this.vx += sin( this.theta ) * 0.5;
+		this.vy += cos( this.theta ) * 0.5;
+
+		this.radius *= 0.99;
+		this.alive = this.radius > 0.8;
+	},
+
+	draw: function( ctx ) {
+		ctx.beginPath();
+		ctx.arc( this.x, this.y, this.radius, 0, TWO_PI );
+		ctx.fillStyle = this.color;
+		ctx.fill();
+	}
+};
+
+
+var MAX_PARTICLES = 100;
+var COLOURS = [ '#FFFFFF'];
+
+
+var particles = [];
+var pool = [];
+
+var demo = Sketch.create({
+	container: document.getElementById( 'logo-nav' )
+});
+
+demo.setup = function() {
+
+
+	// Set off some initial particles.
+	var i, x, y;
+
+
+	for ( i = 0; i < 20; i++ ) {
+		x = ( demo.width * 0.5 ) + random( -100, 100 );
+		y = ( demo.height * 0.5 ) + random( -100, 100 );
+		demo.spawn( x, y );
+	}
+};
+
+demo.spawn = function( x, y ) {
+
+	if ( particles.length >= MAX_PARTICLES )
+		pool.push( particles.shift() );
+
+	particle = pool.length ? pool.pop() : new Particle();
+	particle.init( x, y, random( 3, 9 ) ); //size
+
+	particle.wander = random( 0.5, 2.0 );
+	particle.color = random( COLOURS );
+	particle.drag = random( 0.9, 0.99);
+
+	theta = random( TWO_PI );
+	force = random( 1, 3);
+
+	particle.vx = sin( theta ) * force;
+	particle.vy = cos( theta ) * force;
+
+	particles.push( particle );
+}
+
+demo.update = function() {
+
+	var i, particle;
+
+	for ( i = particles.length - 1; i >= 0; i-- ) {
+
+		particle = particles[i];
+
+		if ( particle.alive ) particle.move();
+		else pool.push( particles.splice( i, 1 )[0] );
+	}
+};
+
+demo.draw = function() {
+
+	demo.globalCompositeOperation  = 'lighter';
+
+	for ( var i = particles.length - 1; i >= 0; i-- ) {
+		particles[i].draw( demo );
+	}
+};
+
+demo.mousemove = function() {
+
+	var particle, theta, force, touch, max, i, j, n;
+
+	for ( i = 0, n = demo.touches.length/2; i < n; i++ ) {
+
+    var randomx = random( 1, 1500);
+    var randomy = random( 1, 1500);
+    var randomly;
+
+		touch = demo.touches[i], max = random( 1, 4 );
+		for ( j = 0; j < max/4; j++ ){
+      randomly = random( 1, 6);
+      if(randomly<2){
+      demo.spawn( touch.x, touch.y);
+    }
+    }
+	}
+};
+
+timer = setInterval(function () {
+
+  var particle, theta, force, touch, max, i, j, n;
+
+  for ( i = 0, n = demo.touches.length; i < n; i++ ) {
+
+    var randomx = random( 0, 1500);
+    var randomy = random( 200, 600);
+
+    touch = demo.touches[i], max = random( 1, 1);
+    for ( j = 0; j < max; j++ ) {
+      demo.spawn( randomx, randomy );
+    }
+  }
+}, 50);
+//end
 
   </script>
 

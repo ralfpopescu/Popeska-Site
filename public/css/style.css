@@ -1,5 +1,5 @@
 body {
-    background-color: #fafed8;
+    background-color: #FCFE89;
 
     -webkit-transition: background-color 0.5s ease-in-out;
     -moz-transition: background-color 0.5s ease-in-out;
@@ -103,7 +103,9 @@ position: absolute;
 width: 80px;
 height: 80px;
 top: 50%;
-left: 50%;
+left:50%;
+left: 360px;
+top:30px;
 
 }
 
