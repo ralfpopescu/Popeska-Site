@@ -21,7 +21,7 @@
   </form>
 <div class="container">
   <div class="albumArt" id = "leftArt">
-    <img src="img/Assets/wolf.png" id = "leftPic"/>
+    <img src="img/Assets/owl.png" id = "leftPic"/>
   </div>
   <div class="albumArt" id = "rightArt">
     <img src="img/Assets/phoenix.png" id = "rightPic"/>
@@ -53,12 +53,13 @@
         <div class="nav-item" id = "ConnectNav">
           Connect
         </div>
-        <div class="nav-item" id = "InquireNav">
-          Inquire
-        </div>
         <div class="nav-item" id = "LearnNav">
           Learn
         </div>
+        <div class="nav-item" id = "InquireNav">
+          Inquire
+        </div>
+
         <div class="icons" id = "listen-icons">
           <a href="https://soundcloud.com/popeska" target="_blank"><div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div></a>
           <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF" target="_blank"><div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div></a>
@@ -103,7 +104,7 @@
           through studies and many projects, including this website. His experience ranges from low level computing to machine
           learning to web development, ad he continually searches for new and challenging problems to solve.
         </div>
-        <div id = 'photoGallery'>
+        <div id = 'photoGal'>
           <img src="img/photoGallery/i1.jpg" class = "pgPhoto" id = "pgPhoto0"/>
           <img src="img/photoGallery/i2.jpg" class = "pgPhoto"  id = "pgPhoto1"/>
           <img src="img/photoGallery/i3.jpg" class = "pgPhoto"  id = "pgPhoto2"/>
@@ -134,8 +135,11 @@ $(document).ready(function(){
   var activated = [0,0,0,0,0,0,0,0];
   var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
-  var time = 2000;
+  var time = 10000;
   var pause = 0;
+  var hoverOn = 1;
+  var curArt = 0; //global for unpauseArt
+  var parity;
 
   function pauseArt(){
     pause = 1;
@@ -145,6 +149,13 @@ $(document).ready(function(){
 
   function unpauseArt(){
     pause = 0;
+
+    parity = curArt % 2;
+    if(parity == 1){
+      fadeIn($("#rightArt"), 2);
+    } else {
+      fadeIn($("#leftArt"), 2);
+    }
   }
 
   fadeIn($("#leftArt"), 3);
@@ -156,96 +167,162 @@ $(document).ready(function(){
   fadeIn($hero,1);
 
   $("#ListenNav").hover(function(){
-    $("#listen-icons").show();
-    slideUp($("#listen-icons"), 10, .1);
-
-    TweenMax.from($("#listen-icons"), .2, {
-      opacity: 0,
-      ease: Linear.easeNone
-    })
-
-    $("#connect-icons").hide();
-    $("#emailForm").hide();
-    $("#learnList").hide();
+    if(hoverOn){
+    listenNavHandle();
+  }
   }, function(){
-    //$("#listen-icons").hide();
+    //do nothing when hover leaves
   }
 );
 
+$("#ListenNav").on("click", function(){
+  listenNavHandle()
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function listenNavHandle(){
+  $("#listen-icons").show();
+  $("#connect-icons").hide();
+  $("#emailForm").hide();
+  $("#learnList").hide();
+  hideAll();
+  navPopUp($("#listen-icons"));
+}
+
 $("#ConnectNav").hover(function(){
+  if(hoverOn){
+    connectNavHandle();
+}
+}, function(){
+  //do nothing when hover leaves
+}
+);
+
+$("#ConnectNav").on("click", function(){
+  connectNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function connectNavHandle(){
   $("#listen-icons").hide();
   $("#connect-icons").show();
-  slideUp($("#connect-icons"), 10, .1);
-
-  TweenMax.from($("#connect-icons"), .2, {
-    opacity: 0,
-    ease: Linear.easeNone
-  })
-
   $("#emailForm").hide();
   $("#learnList").hide();
-}, function(){
-  //$("#listen-icons").hide();
+  hideAll();
+  navPopUp($("#connect-icons"));
 }
-);
 
 $("#InquireNav").hover(function(){
-  $("#listen-icons").hide();
-  $("#connect-icons").hide();
-  $("#emailForm").show();
-
-  slideUp($("#emailForm"), 10, .1);
-
-  TweenMax.from($("#emailForm"), .2, {
-    opacity: 0,
-    ease: Linear.easeNone
-  })
-
-
-  $("#learnList").hide();
+  if(hoverOn){
+    inquireNavHandle();
+}
 }, function(){
-  //$("#listen-icons").hide();
+  //do nothing when hover leaves
 }
 );
 
+$("#InquireNav").on("click", function(){
+  inquireNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function inquireNavHandle(){
+  $("#listen-icons").hide();
+  $("#connect-icons").hide();
+  $("#learnList").hide();
+  hideAll();
+  $("#emailForm").show();
+
+  navPopUp($("#emailForm"));
+}
+
 $("#LearnNav").hover(function(){
+  if(hoverOn){
+    learnNavHandle();
+    hoverOn = 1;
+}
+}, function(){
+  //do nothing when hover leaves
+}
+);
+
+$("#LearnNav").on("click", function(){
+  learnNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function learnNavHandle(){
   $("#listen-icons").hide();
   $("#connect-icons").hide();
   $("#emailForm").hide();
+  hideAll();
   $("#learnList").show();
-}, function(){
-  //$("#listen-icons").hide();
+  navPopUp($("#learnList"));
 }
-);
+
+function navPopUp(element){
+  slideUp(element, 10, .1);
+  TweenMax.from(element, .2, {
+    opacity: 0,
+    ease: Linear.easeNone,
+    onComplete:function(){
+      element.css({ opacity: 1 })
+    }
+  })
+}
 
 $("#about").on("click", function(){
   $("#learnList").hide();
   pauseArt();
   fadeInFrom($("#aboutText"), 2);
   fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
 });
 $("#services").on("click", function(){
   $("#learnList").hide();
   pauseArt();
   fadeInFrom($("#servicesText"), 2);
   fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
 });
 $("#photoGallery").on("click", function(){
   $("#learnList").hide();
   pauseArt();
-  fadeIn($("#servicesText"), 2);
-  fadeIn($("#backArrow"), 2);
+  fadeInFrom($("#photoGal"), 2);
+  fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
+
+  fadeOutAndHide($("#InquireNav"));
+  fadeOutAndHide($("#LearnNav"));
+  fadeOutAndHide($("#ConnectNav"));
+  fadeOutAndHide($("#ListenNav"));
 });
 //$("#resume").on("click", handleLogoClick);
 
 $("#backArrow").on("click", function(){
-   $("#learnList").show();
+   fadeInFrom($("#learnList"),2);
+   fadeIn($("#LearnNav"),2);
+   fadeIn($("#ConnectNav"),2);
+   fadeIn($("#ListenNav"),2);
+   fadeIn($("#InquireNav"),2);
    $("#servicesText").hide();
    $("#aboutText").hide();
    $("#backArrow").hide();
+   $("#photoGal").hide();
    unpauseArt();
+   hoverOn = 1;
 });
 
+function hideAll(){
+  $("#servicesText").hide();
+  $("#aboutText").hide();
+  $("#backArrow").hide();
+  $("#photoGal").hide();
+}
 
   function colorTransition(element, colors, time){
     var curCol = 0,
@@ -256,13 +333,12 @@ $("#backArrow").on("click", function(){
           }, time);
   }
 
+
   function artTransition(arts, time){
-        var curArt = 0;
 
           timer = setInterval(function () {
               if (curArt === arts.length) curArt = 0;
-              var parity = curArt % 2;
-              var div;
+              parity = curArt % 2;
               if(parity == 1){
                 $("#leftPic").attr('src',arts[curArt]);
                 if(!pause){
@@ -283,9 +359,6 @@ $("#backArrow").on("click", function(){
 
   function handleLogoClick(){
     nestedFade($logoNav, .7);
-    // radialExpand($circles, 170, 1, .1);
-    // rotate($circlesContainer, 360, 1);
-    //activated = [0,0,0,0,0,0,0,0];
     pauseArt();
 
   }
@@ -432,6 +505,17 @@ $("#backArrow").on("click", function(){
     })
   }
 
+  function fadeInFromFinalOpacity($element, duration, finalOp){
+    $element.show();
+    TweenMax.from($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        $element.css({opacity: finalOp})
+      }
+    })
+  }
+
   function rotate($element, rotation, duration){
     TweenMax.to($element, duration, {
       rotation: rotation,
@@ -502,22 +586,71 @@ $("#backArrow").on("click", function(){
 
   }
 
+var imageArr = ["i0.jpg","i1.jpg","i2.jpg","i3.jpg","i4.jpg","i5.jpg","i6.jpg"];
+
+function getPhotoIndex(string){
+  return parseInt(string.charAt(18));
+}
+
   function photoSwitchRight(){
+
     var currentSrc = $("#pgPhoto1").attr('src');
     var rightSrc = $("#pgPhoto2").attr('src');
-    var nextSrc =
+
+    var newRightSrcIndex = (getPhotoIndex(rightSrc) + 1);
+    if(newRightSrcIndex >= imageArr.length){
+      newRightSrcIndex = 0;
+    }
+    var newRightSrc = "img/photoGallery/i" + newRightSrcIndex + ".jpg";
+    //var nextSrc =
     $("#pgPhoto1").attr('src',rightSrc);
     $("#pgPhoto0").attr('src',currentSrc);
+    $("#pgPhoto2").attr('src',newRightSrc);
+
+    fadeInFromFinalOpacity($("#pgPhoto0"),.5,.6);
+    fadeInFromFinalOpacity($("#pgPhoto1"),.5,1);
+    fadeInFromFinalOpacity($("#pgPhoto2"),.5,.6);
   }
 
   function photoSwitchLeft(){
-    $("#leftPic").attr('src',arts[curArt]);
+    var currentSrc = $("#pgPhoto1").attr('src');
+    var leftSrc = $("#pgPhoto0").attr('src');
+    //var nextSrc =
+    var newLeftSrcIndex = (getPhotoIndex(leftSrc) - 1);
+    if(newLeftSrcIndex < 0){
+      newLeftSrcIndex = imageArr.length - 1;
+    }
+
+    var newLeftSrc = "img/photoGallery/i" + newLeftSrcIndex + ".jpg";
+
+    $("#pgPhoto1").attr('src',leftSrc);
+    $("#pgPhoto2").attr('src',currentSrc);
+    $("#pgPhoto0").attr('src',newLeftSrc);
+
+    fadeInFromFinalOpacity($("#pgPhoto0"),.5,.6);
+    fadeInFromFinalOpacity($("#pgPhoto1"),.5,1);
+    fadeInFromFinalOpacity($("#pgPhoto2"),.5,.6);
+
+    $("#pgPhoto2").hover(function(){
+      $("#pgPhoto2").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto2").css({opacity:.6})
+    }
+    );
+
+    $("#pgPhoto0").hover(function(){
+      $("#pgPhoto0").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto0").css({opacity:.6})
+    }
+    );
   }
 
 
   $logo.on("click", handleLogoClick);
   $feather.on("click", handleFeatherClick);
   $("#pgPhoto2").on("click", photoSwitchRight);
+  $("#pgPhoto0").on("click", photoSwitchLeft);
 
   $circles.on("click", function(){
     handleCircleClick(this)

@@ -62,6 +62,10 @@ app.post('/inquiry', function (req, res) {
   });
 });
 
+app.get('/getImages', function (req, res) {
+
+});
+
 function matchKey(activated){
   var key1 = "[1,0,0,0,1,0,0,0]";
   console.log(JSON.stringify(activated));
