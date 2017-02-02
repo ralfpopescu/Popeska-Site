@@ -14,7 +14,7 @@ var smtpTransport = nodemailer.createTransport({
    port: 587, // port for secure SMTP
    auth: {
        user: "iampopeska@gmail.com",
-       pass: "mobydick5!"
+       pass: "garbagepassword"
    }
 });
 
@@ -46,16 +46,19 @@ app.post('/featherclick', function (req, res) {
 });
 
 app.post('/inquiry', function (req, res) {
+  var email = req.body.userEmail;
+  var inquiry = req.body.inquiryText;
   smtpTransport.sendMail({  //email options
      from: "Popeska <iampopeska@gmail.com>", // sender address.  Must be the same as authenticated user if using GMail.
-     to: "Receiver Name <ralfpopescu@email.com>", // receiver
-     subject: "Emailing with nodemailer", // subject
-     text: "Email Example with nodemailer" // body
+     to: "Receiver Name <iampopeska@gmail.com>", // receiver
+     subject: 'Inquiry from ' + email,
+     text: inquiry // body
   }, function(error, response){  //callback
      if(error){
          console.log(error);
+         res.send("success");
      }else{
-         console.log("Message sent: " + response.message);
+         console.log("Message sent: " + res.send("success"));
      }
 
      //smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.

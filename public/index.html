@@ -18,6 +18,11 @@
 </head>
 
 <body>
+<div id="back1" class="gradientYellow"></div>
+<div id="back2" class="gradientRed"></div>
+<div id="back3" class="gradientBlue"></div>
+<div id="back4" class="gradientGreen"></div>
+
   <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
   <form action='/featherclick' method="post" id="download" target="dummyframe">
     <input type="text" name="key" value="Hi"/>
@@ -73,9 +78,9 @@
           <a href="https://www.facebook.com/popeskamusic/" target="_blank"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
           <a href="https://www.instagram.com/popeska/" target="_blank"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
         </div>
-        <form action='/inquiry' method="post" id ="emailForm">
-          <input type="text" name="firstname" value="Email" id = "email"><br>
-          <textarea name="lastname" value="Inquiry" id = "inquiry"></textarea><br><br>
+        <form action='/inquiry' method="post" id ="emailForm" target="dummyframe">
+          <input type="text" name="userEmail" value="Your Email Here" id = "email"><br>
+          <textarea name="inquiryText" value="Inquiry" id = "inquiry"></textarea><br><br>
           <input type="submit" value="Submit" id = "submit">
         </form>
         <div class="textList" id = "learnList">
@@ -84,6 +89,7 @@
           <div class ="learnItem" id = "photoGallery">Photo Gallery </div>
           <div class ="learnItem" id = "resume"><a href="img/Assets/RALF_MICHAEL_POPESCU_RESUME.pdf" target="_blank">Résumé</a> </div>
         </div>
+        <div id = "wrapper">
         <div class="textList" id = "servicesText">
           Available Services to Inquire:<br>
           Mix/Mastering. Rate: 150/track for mix/master. 50 for master.<br>
@@ -116,6 +122,7 @@
         <div id = "backArrow">
           <
         </div>
+      </div>
     </div>
 
   </div>
@@ -137,9 +144,9 @@ $(document).ready(function(){
 
   var activated = [0,0,0,0,0,0,0,0];
   var fadeColors = ['#FFAE8F', '#BDD6FD', '#B4E39B', '#FCFE89'];
-  //var fadeColors = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
+  var fadeColors2 = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
-  var time = 10000;
+  var time = 4000;
   var pause = 0;
   var hoverOn = 1;
   var curArt = 0; //global for unpauseArt
@@ -166,8 +173,10 @@ $(document).ready(function(){
   fadeIn($("#leftArt"), 3);
   glow($circlesContainer);
 
-  colorTransition(document.body, fadeColors, time);
+  colorTransition(document.body, fadeColors2, time);
+  gradientTransition(time);
   artTransition(arts, time);
+
 
   fadeIn($hero,1);
 
@@ -339,23 +348,63 @@ function hideAll(){
   }
 
 
+
+  function gradientTransition(time){
+    var curCol = 1,
+          timer = setInterval(function () {
+              if (curCol === 4) {
+                curCol = 0;
+              }
+
+              if(curCol == 0){
+                $("#back1").animate({opacity: 1}, 1000);
+                $("#back2").animate({opacity: 1}, 1000);
+                $("#back3").animate({opacity: 1}, 1000);
+                $("#back4").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 1){
+                $("#back1").animate({opacity: 0}, 1000);
+                //$("#back2").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 2){
+                $("#back2").animate({opacity: 0}, 1000);
+                //$("#back3").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 3){
+                $("#back3").animate({opacity: 0}, 1000);
+                //$("#back4").animate({opacity: 1}, 1000);
+              }
+
+              curCol++;
+          }, time);
+  }
+
   function artTransition(arts, time){
 
           timer = setInterval(function () {
-              if (curArt === arts.length) curArt = 0;
+              if (curArt == 4){
+                curArt = 0;
+              }
               parity = curArt % 2;
               if(parity == 1){
-                $("#leftPic").attr('src',arts[curArt]);
+                //$("#leftPic").attr('src',arts[curArt]);
                 if(!pause){
                 fadeIn($("#leftArt"), 1);
                 }
                 fadeOut($("#rightArt"), 1);
+                setTimeout(function(){
+                  if (curArt == 4){
+                    curArt = 0;
+                  }
+                $("#rightPic").attr('src',arts[curArt])},2000);
               } else {
-                $("#rightPic").attr('src',arts[curArt]);
+                //$("#rightPic").attr('src',arts[curArt]);
                 if(!pause){
                 fadeIn($("#rightArt"), 1);
                 }
                 fadeOut($("#leftArt"), 1);
+                setTimeout(function(){
+                $("#leftPic").attr('src',arts[curArt])},2000);
               }
               curArt++;
           }, time);
@@ -383,16 +432,13 @@ function hideAll(){
         fadeIn($logoNav,2);
       }
     })
-
     unpauseArt();
-
     //send activation code to server
     console.log(JSON.stringify(activated));
     $('input[name="key"]').val(JSON.stringify(activated));
     $('#download').submit();
-
-
   }
+
 
   function handleCircleClick($element){
       flash($element)
@@ -409,16 +455,27 @@ function hideAll(){
       }
     }
 
+    function handleSubmitClick(){
+      TweenMax.to($("#emailForm"), .1, {
+        opacity: 0,
+        ease: Linear.easeNone,
+        onComplete: function(){
+          $("#submit").prop('value', 'Thank You.');
+          TweenMax.to($("#emailForm"), .5, {
+            opacity: 1,
+            ease: Linear.easeNone
+          })
+          setTimeout(function(){
+          $("#submit").prop('value', 'Submit');
+        },3000);
+        }
 
-    function highlightCircle($element){
-      TweenMax.to($largerCircle, duration, {
-        x: $element.position().left,
-        y: $element.position().top,
-        ease: Back.easeOut,
-        delay: stagger * counter,
-        opacity:1
       })
-  }
+
+
+    }
+
+
 
   function flash($element){
     TweenMax.to($element, .1, {
@@ -672,13 +729,11 @@ function getPhotoIndex(string){
   $feather.on("click", handleFeatherClick);
   $("#pgPhoto2").on("click", photoSwitchRight);
   $("#pgPhoto0").on("click", photoSwitchLeft);
+  $("#submit").on("click", handleSubmitClick);
 
   $circles.on("click", function(){
     handleCircleClick(this)
   });
-
-
-
 
 
 })
@@ -693,12 +748,14 @@ Particle.prototype = {
 	init: function( x, y, radius ) {
 
 		this.alive = true;
+    this.increasing = true;
 
 		this.radius = radius || 10;
 		this.wander = 0.15;
 		this.theta = random( TWO_PI );
 		this.drag = 0.92;
 		this.color = '#fff';
+    this.maxSize = random(3,7);
 
 		this.x = x || 0.0;
 		this.y = y || 0.0;
@@ -709,7 +766,7 @@ Particle.prototype = {
 
 	move: function() {
 
-    var randomMotion = (random(1,7))/10;
+    var randomMotion = (random(1,4))/10;
 
 
 		this.x += this.vx * randomMotion;
@@ -722,7 +779,16 @@ Particle.prototype = {
 		this.vx += sin( this.theta ) * 0.5;
 		this.vy += cos( this.theta ) * 0.5;
 
+    if(this.increasing){
+      this.radius *= 1.05;
+      if(this.radius > this.maxSize){
+        this.increasing = false;
+      }
+    } else {
 		this.radius *= 0.99;
+  }
+
+
 		this.alive = this.radius > 0.8;
 	},
 
@@ -766,7 +832,7 @@ demo.spawn = function( x, y ) {
 		pool.push( particles.shift() );
 
 	particle = pool.length ? pool.pop() : new Particle();
-	particle.init( x, y, random( 3, 9 ) ); //size
+	particle.init( x, y, 1); //size
 
 	particle.wander = random( 0.5, 2.0 );
 	particle.color = random( COLOURS );
@@ -823,6 +889,8 @@ demo.mousemove = function() {
 	}
 };
 
+
+
 timer = setInterval(function () {
 
   var particle, theta, force, touch, max, i, j, n;
@@ -830,7 +898,7 @@ timer = setInterval(function () {
   for ( i = 0, n = demo.touches.length; i < n; i++ ) {
 
     var randomx = random( 0, 1500);
-    var randomy = random( 200, 600);
+    var randomy = random( 150, 500);
 
     touch = demo.touches[i], max = random( 1, 1);
     for ( j = 0; j < max; j++ ) {
