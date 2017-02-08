@@ -1,0 +1,921 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>I Am Popeska</title>
+  <meta name="description" content="I Am Popeska">
+
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="img/Assets/wolf.png">
+  <script src="js/TweenMax.js"></script>
+  <script src="js/jquery-3.1.0.js"></script>
+  <script src="node_modules/sketch-js/js/sketch.js"></script>
+  <script src="https://rawgithub.com/soulwire/sketch.js/master/js/sketch.min.js"></script>
+
+
+</head>
+
+<body>
+<div id="back1" class="gradientBlue"></div>
+<div id="back2" class="gradientGreen"></div>
+<div id="back3" class="gradientYellow"></div>
+<div id="back4" class="gradientRed"></div>
+
+  <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
+  <form action='/featherclick' method="post" id="download" target="dummyframe">
+    <input type="text" name="key" value="Hi"/>
+  </form>
+<div class="container">
+  <div class="albumArt" id = "leftArt">
+    <img src="img/Assets/wolf.png" id = "leftPic"/>
+  </div>
+  <div class="albumArt" id = "rightArt">
+    <img src="/img/Assets/elephant.png" id = "rightPic"/>
+  </div>
+  <div class="hero">
+
+    <div class ="circles-container">
+      <div id = "c1" class ="circle"> </div>
+      <div id = "c2" class ="circle"> </div>
+      <div id = "c3" class ="circle"> </div>
+      <div id = "c4" class ="circle"> </div>
+      <div id = "c5" class ="circle"> </div>
+      <div id = "c6" class ="circle"> </div>
+      <div id = "c7" class ="circle"> </div>
+      <div id = "c8" class ="circle"> </div>
+
+      <div class="largerCircle"> </div>
+      <div class ="feather">
+        <img src="img/feather.png" id = "Feather"/>
+      </div>
+    </div>
+
+    <div class="logo-nav">
+      <img src="img/popeska_logo.png" id = "Logo"/>
+      <div class="nav">
+        <div class="nav-item" id = "ListenNav">
+          Listen
+        </div>
+        <div class="nav-item" id = "ConnectNav">
+          Connect
+        </div>
+        <div class="nav-item" id = "LearnNav">
+          Learn
+        </div>
+        <div class="nav-item" id = "InquireNav">
+          Inquire
+        </div>
+
+        <div class="icons" id = "listen-icons">
+          <a href="https://soundcloud.com/popeska" target="_blank"><div class="nav-icon"><img src="img/soundcloud.png" id = "SoundCloudLogo"/></div></a>
+          <a href="https://open.spotify.com/artist/4Td7DjmnDqvSDBHtuJomoF" target="_blank"><div class="nav-icon"><img src="img/spotify.png" id = "SpotifyLogo"/></div></a>
+          <a href="https://www.youtube.com/watch?v=W0v9n5RQRto" target="_blank"><div class="nav-icon"><img src="img/youtube.png" id = "YoutubeLogo"/></div></a>
+        </div>
+        <div class="icons" id = "connect-icons">
+          <a href="https://twitter.com/Popeska" target="_blank"><div class="nav-icon"><img src="img/twitter.png" id = "TwitterLogo"/></div></a>
+          <a href="https://www.facebook.com/popeskamusic/" target="_blank"><div class="nav-icon"><img src="img/fb.png" id = "FacebookLogo"/></div></a>
+          <a href="https://www.instagram.com/popeska/" target="_blank"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
+        </div>
+        <form action='/inquiry' method="post" id ="emailForm" target="dummyframe">
+          <input type="text" name="userEmail" value="Your Email Here" id = "email" onclick="this.select()"><br>
+          <textarea name="inquiryText" value="Inquiry" id = "inquiry"></textarea><br><br>
+          <input type="submit" value="Submit" id = "submit">
+        </form>
+        <div class="textList" id = "learnList">
+          <div class ="learnItem" id = "about">About Popeska </div>
+          <div class ="learnItem" id = "services">Services </div>
+          <div class ="learnItem" id = "photoGallery">Photo Gallery </div>
+          <div class ="learnItem" id = "resume"><a href="img/Assets/RALF_MICHAEL_POPESCU_RESUME.pdf" target="_blank">Résumé</a> </div>
+        </div>
+        <div id = "wrapper">
+        <div class="textList" id = "servicesText">
+          Available Services to Inquire:<br>
+          Mix/Mastering. Rate: 150/track for mix/master. 50 for master.<br>
+          Remixing. Negotiable rates and conditions.<br>
+          Production. Negotiable rates and conditions.<br>
+          Booking. Negotiable rates and conditions.<br>
+          Personal Lessons. 120/hour. Must be in Atlanta.<br>
+          Skype Lessons. 85/hour.<br>
+          </div>
+        <div class="textList" id = "aboutText">
+          Ralf Popescu's moniker "Popeska" was born in the early explosion of electronic dance music back in 2009, and since then
+          he has consistently challenged the status quo of music production with unique and sonically addicting material.
+          Though he has toured internationally, playing festivals like EDC Las Vegas, TomorrowWorld, Nocturnal Wonderland,
+          and dozens more, nowadays he prefers to hone his craft and provide his production services in the comfort of his home city of Atlanta.
+          As a Sony/ATV producer and writer who has collaborated with clients such as the SuperBowl, Bose, Major League Soccer,
+          EA Games, and a diverse collection of major label artists, Popeska is no stranger to professional quality production.
+          Now, he is happy to extend his services to a broader customer base, as his passion for music production drives him to work
+          on all types of music from musicians of all walks of life and skill levels. <br><br>
+          In addition to music production, Ralf Popescu is extraordinarily passionate in the realm of computer science.
+          As a student of Georgia Institute of Technology, he has developed his skills as a software engineer and problem solver
+          through studies and many projects, including this website. His experience ranges from low level computing to machine
+          learning to web development, ad he continually searches for new and challenging problems to solve.
+        </div>
+        <div id = 'photoGal'>
+          <img src="img/photoGallery/i1.jpg" class = "pgPhoto" id = "pgPhoto0"/>
+          <img src="img/photoGallery/i2.jpg" class = "pgPhoto"  id = "pgPhoto1"/>
+          <img src="img/photoGallery/i3.jpg" class = "pgPhoto"  id = "pgPhoto2"/>
+        </div>
+
+        <div id = "backArrow">
+          <img src="/img/backArrow.png" id = "backArrowPic"/>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <script>
+
+
+$(document).ready(function(){
+  var $logo = $("#Logo");
+  var $container = $("#container");
+  var $circles = $(".circle");
+  var $circlesContainer = $(".circles-container");
+  var $hero = $(".hero");
+  var $logoNav = $(".logo-nav");
+  var $feather = $(".feather");
+  var $largerCircles = $(".largerCircle");
+
+  var activated = [0,0,0,0,0,0,0,0];
+  var fadeColors = ['#FFAE8F', '#BDD6FD', '#B4E39B', '#FCFE89'];
+  var fadeColors2 = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
+  var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
+  var time = 7000;
+  var pause = 0;
+  var hoverOn = 1;
+  var curArt = 2; //global for unpauseArt
+  var parity;
+  var enteringCode = 0;
+
+  function pauseArt(){
+    pause = 1;
+    fadeOut($("#rightArt"), 1);
+    fadeOut($("#leftArt"), 1);
+  }
+
+  function unpauseArt(){
+    pause = 0;
+
+    parity = curArt % 2;
+    if(parity == 1){
+      fadeIn($("#rightArt"), 2);
+    } else {
+      fadeIn($("#leftArt"), 2);
+    }
+  }
+
+  fadeIn($("#leftArt"), 3);
+  glow($circlesContainer);
+
+  colorTransition(document.body, fadeColors2, time);
+  gradientTransition(time);
+  artTransition(arts, time);
+
+
+  fadeIn($hero,1);
+  setTimeout(function(){
+    $('#back2').show();
+    $('#back3').show();
+    $('#back4').show();
+  }, 4000);
+  fadeIn($("#back1"),2);
+
+  $("#ListenNav").hover(function(){
+    if(hoverOn){
+    listenNavHandle();
+  }
+  }, function(){
+    //do nothing when hover leaves
+  }
+);
+
+$("#ListenNav").on("click", function(){
+  listenNavHandle()
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function listenNavHandle(){
+  $("#listen-icons").show();
+  $("#connect-icons").hide();
+  $("#emailForm").hide();
+  $("#learnList").hide();
+  hideAll();
+  navPopUp($("#listen-icons"));
+}
+
+$("#ConnectNav").hover(function(){
+  if(hoverOn){
+    connectNavHandle();
+}
+}, function(){
+  //do nothing when hover leaves
+}
+);
+
+$("#ConnectNav").on("click", function(){
+  connectNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function connectNavHandle(){
+  $("#listen-icons").hide();
+  $("#connect-icons").show();
+  $("#emailForm").hide();
+  $("#learnList").hide();
+  hideAll();
+  navPopUp($("#connect-icons"));
+}
+
+$("#InquireNav").hover(function(){
+  if(hoverOn){
+    inquireNavHandle();
+}
+}, function(){
+  //do nothing when hover leaves
+}
+);
+
+$("#InquireNav").on("click", function(){
+  inquireNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function inquireNavHandle(){
+  $("#listen-icons").hide();
+  $("#connect-icons").hide();
+  $("#learnList").hide();
+  hideAll();
+  $("#emailForm").show();
+
+  navPopUp($("#emailForm"));
+}
+
+$("#LearnNav").hover(function(){
+  if(hoverOn){
+    learnNavHandle();
+    hoverOn = 1;
+}
+}, function(){
+  //do nothing when hover leaves
+}
+);
+
+$("#LearnNav").on("click", function(){
+  learnNavHandle();
+  unpauseArt();
+  hoverOn = 1;
+});
+
+function learnNavHandle(){
+  $("#listen-icons").hide();
+  $("#connect-icons").hide();
+  $("#emailForm").hide();
+  hideAll();
+  $("#learnList").show();
+  navPopUp($("#learnList"));
+}
+
+function navPopUp(element){
+  slideUp(element, 10, .1);
+  TweenMax.from(element, .2, {
+    opacity: 0,
+    ease: Linear.easeNone,
+    onComplete:function(){
+      element.css({ opacity: 1 })
+    }
+  })
+}
+
+$("#about").on("click", function(){
+  $("#learnList").hide();
+  pauseArt();
+  fadeInFrom($("#aboutText"), 2);
+  fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
+});
+$("#services").on("click", function(){
+  $("#learnList").hide();
+  pauseArt();
+  fadeInFrom($("#servicesText"), 2);
+  fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
+});
+$("#photoGallery").on("click", function(){
+  $("#learnList").hide();
+  pauseArt();
+  fadeInFrom($("#photoGal"), 2);
+  fadeInFrom($("#backArrow"), 2);
+  hoverOn = 0;
+
+  fadeOutAndHide($("#InquireNav"));
+  fadeOutAndHide($("#LearnNav"));
+  fadeOutAndHide($("#ConnectNav"));
+  fadeOutAndHide($("#ListenNav"));
+});
+//$("#resume").on("click", handleLogoClick);
+
+$("#backArrow").on("click", function(){
+   fadeInFrom($("#learnList"),2);
+   fadeIn($("#LearnNav"),2);
+   fadeIn($("#ConnectNav"),2);
+   fadeIn($("#ListenNav"),2);
+   fadeIn($("#InquireNav"),2);
+   $("#servicesText").hide();
+   $("#aboutText").hide();
+   $("#backArrow").hide();
+   $("#photoGal").hide();
+   unpauseArt();
+   hoverOn = 1;
+});
+
+function hideAll(){
+  $("#servicesText").hide();
+  $("#aboutText").hide();
+  $("#backArrow").hide();
+  $("#photoGal").hide();
+}
+
+  function colorTransition(element, colors, time){
+    var curCol = 2,
+          timer = setInterval(function () {
+              if (curCol === colors.length) curCol = 0;
+              $(element).css("background-color", colors[curCol]);
+              curCol++;
+          }, time);
+  }
+
+
+
+  function gradientTransition(time){
+    var curCol = 1,
+          timer = setInterval(function () {
+              if (curCol === 4) {
+                curCol = 0;
+              }
+
+              if(curCol == 0){
+                $("#back1").animate({opacity: 1}, 1000);
+                $("#back2").animate({opacity: 1}, 1000);
+                $("#back3").animate({opacity: 1}, 1000);
+                $("#back4").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 1){
+                $("#back1").animate({opacity: 0}, 1000);
+                //$("#back2").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 2){
+                $("#back2").animate({opacity: 0}, 1000);
+                //$("#back3").animate({opacity: 1}, 1000);
+              }
+              if(curCol == 3){
+                $("#back3").animate({opacity: 0}, 1000);
+                //$("#back4").animate({opacity: 1}, 1000);
+              }
+
+              curCol++;
+          }, time);
+  }
+
+  function artTransition(arts, time){
+
+          timer = setInterval(function () {
+              if (curArt == 4){
+                curArt = 0;
+              }
+              parity = curArt % 2;
+              if(parity == 1){
+                //$("#leftPic").attr('src',arts[curArt]);
+                if(!pause){
+                fadeIn($("#leftArt"), 1);
+                }
+                fadeOut($("#rightArt"), 1);
+                setTimeout(function(){
+                  if (curArt == 4){
+                    curArt = 0;
+                  }
+                $("#rightPic").attr('src',arts[curArt])},2000);
+              } else {
+                //$("#rightPic").attr('src',arts[curArt]);
+                if(!pause){
+                fadeIn($("#rightArt"), 1);
+                }
+                fadeOut($("#leftArt"), 1);
+                setTimeout(function(){
+                $("#leftPic").attr('src',arts[curArt])},2000);
+              }
+              curArt++;
+          }, time);
+  }
+
+
+
+  function handleLogoClick(){
+    nestedFade($logoNav, .7);
+    pauseArt();
+    enteringCode = 1;
+
+  }
+  function handleFeatherClick(){
+    enteringCode = 0;
+
+    rotate($circlesContainer, -360, 6);
+    reverseRadialExpand($circles, 170, 4, 0);
+    fadeOut($circles, .5);
+
+    TweenMax.to($feather, .5, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        slideUp($hero, 100, .7);
+        fadeIn($logoNav,2);
+      }
+    })
+    unpauseArt();
+    //send activation code to server
+    console.log(JSON.stringify(activated));
+    $('input[name="key"]').val(JSON.stringify(activated));
+    $('#download').submit();
+  }
+
+
+  function handleCircleClick($element){
+      flash($element)
+      $($element).css({backgroundColor: 'red'});
+      //highlightCircle($element)
+      var id = $element.id;
+      var num_id = parseInt(id.charAt(1));
+      var num_id = num_id - 1;
+      activated[num_id] = Number(!activated[num_id]); //flips bit of circle id, -1 because ids start at 1
+      if(activated[num_id]){
+        $($element).css({backgroundColor: 'black'});
+      } else {
+        $($element).css({backgroundColor: 'transparent'});
+      }
+    }
+
+    function handleSubmitClick(){
+      TweenMax.to($("#emailForm"), .1, {
+        opacity: 0,
+        ease: Linear.easeNone,
+        onComplete: function(){
+          $("#submit").prop('value', 'Thank You.');
+          TweenMax.to($("#emailForm"), .5, {
+            opacity: 1,
+            ease: Linear.easeNone
+          })
+          setTimeout(function(){
+          $("#submit").prop('value', 'Submit');
+        },3000);
+        }
+
+      })
+
+
+    }
+
+
+
+  function flash($element){
+    TweenMax.to($element, .1, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        TweenMax.to($element, .1, {
+          opacity: 1,
+          ease: Linear.easeNone
+        })
+      }
+    })
+  }
+
+  function glow($element){
+    TweenMax.fromTo($element, 2,
+    		{
+          opacity: .6,
+      	},
+    		{
+          opacity: .9,
+          repeat: -1,
+          ease: Linear.easeNone,
+          yoyo: true
+    		}
+    	);
+  }
+
+
+
+  function slideDown($element, distance, duration){
+    TweenMax.to($element, duration, {
+      y: distance,
+      ease: Power1.easeInOut,
+      onComplete:function(){
+        $element.hide();
+      }
+    })
+    fadeOut($element, duration)
+  }
+  function slideUp($element, distance, duration){
+    TweenMax.from($element, duration, {
+      y: distance,
+      ease: Power1.easeIn
+    })
+  }
+  function fadeOut($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone
+    })
+  }
+
+  function fadeOutAndHide($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete:function(){
+        $element.hide();
+      }
+    })
+  }
+
+  function nestedFade($element, duration){
+    TweenMax.to($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete:function(){
+        $element.hide();
+        $feather.show();
+        fadeIn($feather, 1);
+        radialExpand($circles, 170, 1, .1);
+        rotate($circlesContainer, 360, 1);
+      }
+    })
+  }
+
+  function fadeIn($element, duration){
+    $element.show();
+    TweenMax.to($element, duration, {
+      opacity: 1,
+      ease: Linear.easeNone
+    })
+  }
+
+  function fadeInFrom($element, duration){
+    $element.show();
+    TweenMax.from($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone
+    })
+  }
+
+  function fadeInFromFinalOpacity($element, duration, finalOp){
+    $element.show();
+    TweenMax.from($element, duration, {
+      opacity: 0,
+      ease: Linear.easeNone,
+      onComplete: function(){
+        $element.css({opacity: finalOp})
+      }
+    })
+  }
+
+  function rotate($element, rotation, duration){
+    TweenMax.to($element, duration, {
+      rotation: rotation,
+      ease: Back.easeOut
+    })
+  }
+
+  function rotateAndHide($element, rotation, duration){
+    TweenMax.to($element, duration, {
+      rotation: rotation,
+      ease: Back.easeOut,
+      onComplete:function(){
+        $element.hide();
+      }
+    })
+  }
+
+
+
+  function radialExpand($elements, distance, duration, stagger){
+    var counter = 0;
+    var degrees = 360;
+    var length = $elements.length;
+    var step = degrees/length;
+
+
+    $elements.each(function(){
+      var $element = $(this);
+      var rotation = step * counter;
+      var radians = rotation / 180 * Math.PI;
+
+      var xtrans =  Math.cos(radians) * distance;
+      var ytrans =  Math.sin(radians) * distance;
+
+      TweenMax.to($element, duration, {
+        x: xtrans,
+        y: ytrans,
+        ease: Back.easeOut,
+        delay: stagger * counter,
+        opacity:1
+      })
+      counter++;
+    });
+  }
+  function reverseRadialExpand($elements, distance, duration, stagger){
+    var counter = 0;
+    var degrees = 360;
+    var length = $elements.length;
+    var step = degrees/length;
+
+    $elements.each(function(){
+      var $element = $(this);
+      var rotation = step * counter;
+      var radians = rotation / 180 * Math.PI;
+
+      var xtrans =  -(Math.cos(radians) * distance)/4;
+      var ytrans =  -(Math.sin(radians) * distance)/4;
+
+      TweenMax.to($element, duration, {
+        x: xtrans,
+        y: ytrans,
+        ease: Back.easeOut,
+        delay: stagger * counter,
+        opacity:1
+      })
+      counter++;
+    });
+
+  }
+
+var imageArr = ["i0.jpg","i1.jpg","i2.jpg","i3.jpg","i4.jpg","i5.jpg","i6.jpg"];
+
+function getPhotoIndex(string){
+  return parseInt(string.charAt(18));
+}
+
+  function photoSwitchRight(){
+
+    var currentSrc = $("#pgPhoto1").attr('src');
+    var rightSrc = $("#pgPhoto2").attr('src');
+
+    var newRightSrcIndex = (getPhotoIndex(rightSrc) + 1);
+    if(newRightSrcIndex >= imageArr.length){
+      newRightSrcIndex = 0;
+    }
+    var newRightSrc = "img/photoGallery/i" + newRightSrcIndex + ".jpg";
+    //var nextSrc =
+    $("#pgPhoto1").attr('src',rightSrc);
+    $("#pgPhoto0").attr('src',currentSrc);
+    $("#pgPhoto2").attr('src',newRightSrc);
+
+    fadeInFromFinalOpacity($("#pgPhoto0"),.5,.6);
+    fadeInFromFinalOpacity($("#pgPhoto1"),.5,1);
+    fadeInFromFinalOpacity($("#pgPhoto2"),.5,.6);
+
+    $("#pgPhoto2").hover(function(){
+      $("#pgPhoto2").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto2").css({opacity:.6})
+    }
+    );
+
+    $("#pgPhoto0").hover(function(){
+      $("#pgPhoto0").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto0").css({opacity:.6})
+    }
+    );
+  }
+
+  function photoSwitchLeft(){
+    var currentSrc = $("#pgPhoto1").attr('src');
+    var leftSrc = $("#pgPhoto0").attr('src');
+    //var nextSrc =
+    var newLeftSrcIndex = (getPhotoIndex(leftSrc) - 1);
+    if(newLeftSrcIndex < 0){
+      newLeftSrcIndex = imageArr.length - 1;
+    }
+
+    var newLeftSrc = "img/photoGallery/i" + newLeftSrcIndex + ".jpg";
+
+    $("#pgPhoto1").attr('src',leftSrc);
+    $("#pgPhoto2").attr('src',currentSrc);
+    $("#pgPhoto0").attr('src',newLeftSrc);
+
+    fadeInFromFinalOpacity($("#pgPhoto0"),.5,.6);
+    fadeInFromFinalOpacity($("#pgPhoto1"),.5,1);
+    fadeInFromFinalOpacity($("#pgPhoto2"),.5,.6);
+
+    $("#pgPhoto2").hover(function(){
+      $("#pgPhoto2").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto2").css({opacity:.6})
+    }
+    );
+
+    $("#pgPhoto0").hover(function(){
+      $("#pgPhoto0").css({opacity:.4})
+    }, function(){
+      $("#pgPhoto0").css({opacity:.6})
+    }
+    );
+  }
+
+
+  $logo.on("click", handleLogoClick);
+  $feather.on("click", handleFeatherClick);
+  $("#pgPhoto2").on("click", photoSwitchRight);
+  $("#pgPhoto0").on("click", photoSwitchLeft);
+  $("#submit").on("click", handleSubmitClick);
+
+  $circles.on("click", function(){
+    handleCircleClick(this)
+  });
+
+
+})
+
+//start
+function Particle( x, y, radius ) {
+	this.init( x, y, radius );
+}
+
+Particle.prototype = {
+
+	init: function( x, y, radius ) {
+
+		this.alive = true;
+    this.increasing = true;
+
+		this.radius = radius || 10;
+		this.wander = 0.15;
+		this.theta = random( TWO_PI );
+		this.drag = 0.92;
+		this.color = '#fff';
+    this.maxSize = random(3,7);
+
+		this.x = x || 0.0;
+		this.y = y || 0.0;
+
+		this.vx = 0.0;
+		this.vy = 0.0;
+	},
+
+	move: function() {
+
+    var randomMotion = (random(1,4))/10;
+
+
+		this.x += this.vx * randomMotion;
+		this.y += this.vy * randomMotion;
+
+		this.vx *= this.drag;
+		this.vy *= this.drag;
+
+		this.theta += random( -0.5, 0.5 ) * this.wander;
+		this.vx += sin( this.theta ) * 0.5;
+		this.vy += cos( this.theta ) * 0.5;
+
+    if(this.increasing){
+      this.radius *= 1.05;
+      if(this.radius > this.maxSize){
+        this.increasing = false;
+      }
+    } else {
+		this.radius *= 0.99;
+  }
+
+
+		this.alive = this.radius > 0.8;
+	},
+
+	draw: function( ctx ) {
+		ctx.beginPath();
+		ctx.arc( this.x, this.y, this.radius, 0, TWO_PI );
+		ctx.fillStyle = this.color;
+		ctx.fill();
+	}
+};
+
+
+var MAX_PARTICLES = 100;
+var COLOURS = [ '#FFFFFF'];
+
+
+var particles = [];
+var pool = [];
+
+var demo = Sketch.create({
+	container: document.getElementById( 'logo-nav' )
+});
+
+demo.setup = function() {
+
+
+	// Set off some initial particles.
+	var i, x, y;
+
+
+	for ( i = 0; i < 20; i++ ) {
+		x = ( demo.width * 0.5 ) + random( -100, 100 );
+		y = ( demo.height * 0.5 ) + random( -100, 100 );
+		demo.spawn( x, y );
+	}
+};
+
+demo.spawn = function( x, y ) {
+
+	if ( particles.length >= MAX_PARTICLES )
+		pool.push( particles.shift() );
+
+	particle = pool.length ? pool.pop() : new Particle();
+	particle.init( x, y, 1); //size
+
+	particle.wander = random( 0.5, 2.0 );
+	particle.color = random( COLOURS );
+	particle.drag = random( 0.9, 0.99);
+
+	theta = random( TWO_PI );
+	force = random( 1, 3);
+
+	particle.vx = sin( theta ) * force;
+	particle.vy = cos( theta ) * force;
+
+	particles.push( particle );
+}
+
+demo.update = function() {
+
+	var i, particle;
+
+	for ( i = particles.length - 1; i >= 0; i-- ) {
+
+		particle = particles[i];
+
+		if ( particle.alive ) particle.move();
+		else pool.push( particles.splice( i, 1 )[0] );
+	}
+};
+
+demo.draw = function() {
+
+	demo.globalCompositeOperation  = 'lighter';
+
+	for ( var i = particles.length - 1; i >= 0; i-- ) {
+		particles[i].draw( demo );
+	}
+};
+
+demo.mousemove = function() {
+
+	var particle, theta, force, touch, max, i, j, n;
+
+	for ( i = 0, n = demo.touches.length/2; i < n; i++ ) {
+
+    var randomx = random( 1, 1500);
+    var randomy = random( 1, 1500);
+    var randomly;
+
+		touch = demo.touches[i], max = random( 1, 4 );
+		for ( j = 0; j < max/4; j++ ){
+      randomly = random( 1, 6);
+      if(randomly<2){
+      demo.spawn( touch.x, touch.y);
+    }
+    }
+	}
+};
+
+
+
+timer = setInterval(function () {
+
+  var particle, theta, force, touch, max, i, j, n;
+
+  for ( i = 0, n = demo.touches.length; i < n; i++ ) {
+
+    var randomx = random( 0, 1500);
+    var randomy = random( 150, 500);
+
+    touch = demo.touches[i], max = random( 1, 1);
+    for ( j = 0; j < max; j++ ) {
+      demo.spawn( randomx, randomy );
+    }
+  }
+}, 50);
+//end
+
+  </script>
+
+</body>
+</html>

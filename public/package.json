@@ -1,0 +1,33 @@
+{
+  "name": "popeska",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "2.0.0-beta.2",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "express": "^4.14.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "systemjs": "0.19.6",
+    "zone.js": "0.5.10"
+  },
+  "devDependencies": {
+    "lite-server": "^1.3.1"
+  },
+  "description": "my site",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralfpopescu/Popeska-Site.git"
+  },
+  "author": "Ralf Popescu",
+  "bugs": {
+    "url": "https://github.com/ralfpopescu/Popeska-Site/issues"
+  },
+  "homepage": "https://github.com/ralfpopescu/Popeska-Site#readme"
+}
