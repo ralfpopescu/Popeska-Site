@@ -65,9 +65,18 @@ app.post('/inquiry', function (req, res) {
   });
 });
 
-app.get('/getImages', function (req, res) {
+app.get('/validateCode', function (req, res) {
+  var activated = req.body.key;
+
+  var result = matchKey(activated);
+  if(result != "NOMATCH"){
+    res.send("match");
+  } else {
+    res.send("nomatch");
+  }
 
 });
+
 
 function matchKey(activated){
   var key1 = "[1,0,0,0,1,0,0,0]";

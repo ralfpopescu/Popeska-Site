@@ -8,7 +8,7 @@
   <meta name="description" content="I Am Popeska">
 
   <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="img/Assets/owl.png">
+  <link rel="icon" href="img/Assets/wolf.png">
   <script src="js/TweenMax.js"></script>
   <script src="js/jquery-3.1.0.js"></script>
   <script src="node_modules/sketch-js/js/sketch.js"></script>
@@ -18,10 +18,10 @@
 </head>
 
 <body>
-<div id="back1" class="gradientYellow"></div>
-<div id="back2" class="gradientRed"></div>
-<div id="back3" class="gradientBlue"></div>
-<div id="back4" class="gradientGreen"></div>
+<div id="back1" class="gradientBlue"></div>
+<div id="back2" class="gradientGreen"></div>
+<div id="back3" class="gradientYellow"></div>
+<div id="back4" class="gradientRed"></div>
 
   <iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
   <form action='/featherclick' method="post" id="download" target="dummyframe">
@@ -29,10 +29,10 @@
   </form>
 <div class="container">
   <div class="albumArt" id = "leftArt">
-    <img src="img/Assets/owl.png" id = "leftPic"/>
+    <img src="img/Assets/wolf.png" id = "leftPic"/>
   </div>
   <div class="albumArt" id = "rightArt">
-    <img src="img/Assets/phoenix.png" id = "rightPic"/>
+    <img src="/img/Assets/elephant.png" id = "rightPic"/>
   </div>
   <div class="hero">
 
@@ -79,7 +79,7 @@
           <a href="https://www.instagram.com/popeska/" target="_blank"><div class="nav-icon"><img src="img/instagram.png" id = "InstagramLogo"/></div></a>
         </div>
         <form action='/inquiry' method="post" id ="emailForm" target="dummyframe">
-          <input type="text" name="userEmail" value="Your Email Here" id = "email"><br>
+          <input type="text" name="userEmail" value="Your Email Here" id = "email" onclick="this.select()"><br>
           <textarea name="inquiryText" value="Inquiry" id = "inquiry"></textarea><br><br>
           <input type="submit" value="Submit" id = "submit">
         </form>
@@ -120,7 +120,7 @@
         </div>
 
         <div id = "backArrow">
-          <
+          <img src="/img/backArrow.png" id = "backArrowPic"/>
         </div>
       </div>
     </div>
@@ -146,10 +146,10 @@ $(document).ready(function(){
   var fadeColors = ['#FFAE8F', '#BDD6FD', '#B4E39B', '#FCFE89'];
   var fadeColors2 = ['#fff4e0', '#dceffc', '#e4ffd5', '#fafed8'];
   var arts = ["img/Assets/phoenix.png","img/Assets/wolf.png","/img/Assets/elephant.png","img/Assets/owl.png"];
-  var time = 4000;
+  var time = 7000;
   var pause = 0;
   var hoverOn = 1;
-  var curArt = 0; //global for unpauseArt
+  var curArt = 2; //global for unpauseArt
   var parity;
   var enteringCode = 0;
 
@@ -179,6 +179,12 @@ $(document).ready(function(){
 
 
   fadeIn($hero,1);
+  setTimeout(function(){
+    $('#back2').show();
+    $('#back3').show();
+    $('#back4').show();
+  }, 4000);
+  fadeIn($("#back1"),2);
 
   $("#ListenNav").hover(function(){
     if(hoverOn){
@@ -339,7 +345,7 @@ function hideAll(){
 }
 
   function colorTransition(element, colors, time){
-    var curCol = 0,
+    var curCol = 2,
           timer = setInterval(function () {
               if (curCol === colors.length) curCol = 0;
               $(element).css("background-color", colors[curCol]);
@@ -409,6 +415,7 @@ function hideAll(){
               curArt++;
           }, time);
   }
+
 
 
   function handleLogoClick(){
